@@ -1,0 +1,10 @@
+asm/
+assets/
+build/
+.ninja_log
+.splache
+baserom.us.z64
+build.ninja
+quest64.d
+quest64.ld
+permuter_settings.toml
