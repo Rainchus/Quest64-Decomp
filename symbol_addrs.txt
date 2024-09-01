@@ -3,3 +3,17 @@ func_8010009C_DC16BC = 0x8010009C; // rom:0xDC16BC type:func
 func_8010008C_E278CC = 0x8010008C; // rom:0xE278CC type:func
 rspBootText = 0x80049EF0; // rom:0x4AAF0
 gspF3DEX2kawase_fifo_text = 0x80049FC0; // rom:0x4ABC0
+
+
+nnScCreateScheduler = 0x80000530;
+nnScStartScheduler = 0x8000062C;
+nnScGetAudioMQ = 0x800006F8;
+nnScGetGfxMQ = 0x80000704;
+nnScEventHandler = 0x80000710;
+nnScAddClient = 0x800007d4;
+nnScRemoveClient = 0x80000824;
+nnScExecuteAudio = 0x80000900;
+nnScExecuteGraphics = 0x80000A80;
+nnScWaitTaskReady = 0x80000BB4;
+
+Instrument_tbl_ROM_START = 0xE81610;
