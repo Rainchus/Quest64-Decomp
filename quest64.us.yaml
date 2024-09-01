@@ -322,50 +322,60 @@ segments:
     subsegments:
       - [0x73A90, databin]
 
-  - type: code
+  - name: ovl_title
+    exclusive_ram_id: overlay
+    type: code
+    dir: overlays/title
     start: 0xDA68F0
     vram: 0x80100000
-    dir: ovl_overlay1
-    name: overlay1
-    overlay: True
-    exclusive_ram_id: title
+    follows_vram: unkData
     symbol_name_format: $VRAM_$SEG
-    follow_vram: unkData
     subsegments:
-      - [0xDA68F0, c]
-      - [0xDA9A00, data]
+    - [0xDA68F0, asm]
+    - [0xDA7404, asm]
+    - [0xDA9A00, data]
+    - [0xDC15C0, rodata, DA68F0]
+    - [0xDC15E0, rodata, DA7404]
 
-  - type: code
+  - name: ovl_intro
+    exclusive_ram_id: overlay
+    type: code
+    dir: overlays/intro
     start: 0xDC1620
     vram: 0x80100000
-    dir: ovl_overlay2
-    name: overlay2
-    overlay: True
-    exclusive_ram_id: intro
+    follows_vram: unkData
     symbol_name_format: $VRAM_$SEG
-    follow_vram: unkData
     subsegments:
-      - [0xDC1620, asm]
-      # - [0xDC4700, c]
-      # - [0xDC7820, c]
-      - [0xDC7860, data] #DL
+    - [0xDC1620, asm]
+    - [0xDC4700, asm]
+    - [0xDC7820, asm]
+    - [0xDC7860, data]
+    - [0xE2781C, rodata, DC1620]
 
-  - type: code
+  - name: ovl_ending
+    exclusive_ram_id: overlay
+    type: code
+    dir: overlays/ending
     start: 0xE27840
     vram: 0x80100000
-    dir: ovl_overlay3
-    name: overlay3
-    overlay: True 
-    exclusive_ram_id: cutscene
+    follows_vram: unkData
     symbol_name_format: $VRAM_$SEG
-    follow_vram: unkData
     subsegments:
-     - [0xE27840, asm]
-     - [0xE2ADEC, data]
+    - [0xE27840, asm]
+    - [0xE2ADEC, data]
 
-  - [0xE7E800, databin, Instrument_ctl]
-  - [0xE81610, databin, Instrument_tbl]
-  - [0xEEE020, databin, SE_ctl]
-  - [0xEEFCE0, databin, SE_tbl]
-  - [0xF94380, databin, trailer] # 0xff to end
+  - name: sound_data
+    type: data
+    dir: sound/
+    start: 0xE7E800
+    vram: 0x8037A480
+    follows_vram: unkData
+    subsegments:
+    - [0xE7E800, data, instrument_ctl]
+    - [0xE81610, data, instrument_tbl]
+    - [0xEEE020, data, SE_ctl]
+    - [0xEEFCE0, data, SE_tbl]
+  
+  - [0xF94380, databin, trailer] #0xFFs til the end
+
   - [0x1000000]
