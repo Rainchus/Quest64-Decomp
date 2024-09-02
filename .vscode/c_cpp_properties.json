@@ -1,0 +1,29 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Quest64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/include",
+                    "${workspaceFolder}/include/2.0I/",
+                    "${workspaceFolder}/include/2.0I/PR/",
+                    "${workspaceFolder}/src"
+                ]
+            },
+            "includePath": [
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/include/2.0I/",
+                "${workspaceFolder}/include/2.0I/PR/",
+                "${workspaceFolder}/src"
+            ],
+            "defines": [
+                "F3DEX_GBI_2",
+                "_LANGUAGE_C"
+            ],
+            "cStandard": "c89",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "${default}"
+        }
+    ]
+}

@@ -1,19 +1,49 @@
 func_8010004C_DA693C = 0x8010004C; // rom:0xDA693C type:func
 func_8010009C_DC16BC = 0x8010009C; // rom:0xDC16BC type:func
 func_8010008C_E278CC = 0x8010008C; // rom:0xE278CC type:func
+UpdateBGM = 0x800267B8; //rom:0x273B8
 rspBootText = 0x80049EF0; // rom:0x4AAF0
 gspF3DEX2kawase_fifo_text = 0x80049FC0; // rom:0x4ABC0
 
+//os functions
+osCreatePiManager   	  = 0x80033D80;
 
-nnScCreateScheduler = 0x80000530;
-nnScStartScheduler = 0x8000062C;
-nnScGetAudioMQ = 0x800006F8;
-nnScGetGfxMQ = 0x80000704;
-nnScEventHandler = 0x80000710;
-nnScAddClient = 0x800007d4;
-nnScRemoveClient = 0x80000824;
-nnScExecuteAudio = 0x80000900;
-nnScExecuteGraphics = 0x80000A80;
-nnScWaitTaskReady = 0x80000BB4;
+osRecvMesg           	  = 0x80034020;
+osSetIntMask        	  = 0x80034160;
+osSendMesg           	  = 0x80034200;
+osWritebackDCacheAll      = 0x80034350;
+osSpTaskYield             = 0x80034380;
+osSpTaskYielded           = 0x800343a0;
+_VirtualToPhysicalTask    = 0x80034420;
+osSpTaskLoad              = 0x8003452c;
+osSpTaskStartGo           = 0x80034694;
+osViBlack                 = 0x800346e0;
+osViSwapBuffer 	          = 0x80034750;
+osViGetCurrentFramebuffer = 0x800347a0;
+osCreateViManager         = 0x80034840;
+viMgrMain                 = 0x800349c8;
+osViSetMode               = 0x80034ba0;
+osViSetSpecialFeatures    = 0x80034c10;
+osVirtualToPhysical 	  = 0x80034dd0;
+osWritebackDCache         = 0x80034e50;
+osGetTime                 = 0x80034ed0;
+_nsqrtf                   = 0x80034f60;
+guPositionF               = 0x80034f70;
+guPosition                = 0x80035120;
+
+osViSetEvent = 0x80033F40; //rom:0x34B40
+osSetEventMesg = 0x80033FB0; //rom:0x34BB0
+osCreateMesgQueue = 0x80033F10; //rom:0x34B10
+nuScCreateScheduler = 0x80000530; //rom:0x1130
+nuScStartScheduler = 0x8000062C;
+nuScGetAudioMQ = 0x800006F8;
+nuScGetGfxMQ = 0x80000704;
+nuScEventHandler = 0x80000710;
+nuScAddClient = 0x800007d4;
+nuScRemoveClient = 0x80000824;
+nuScExecuteAudio = 0x80000900;
+nuScExecuteGraphics = 0x80000A80;
+nuScWaitTaskReady = 0x80000BB4;
+
 
 Instrument_tbl_ROM_START = 0xE81610;

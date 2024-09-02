@@ -12,7 +12,7 @@ options:
   # src_path: src
   # build_path: build
   # create_asm_dependencies: True
-
+  ld_symbol_header_path: include/ld_addrs.h
   ld_script_path: quest64.ld
   ld_dependencies: True
 

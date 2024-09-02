@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "common.h": "c",
+        "ultra64.h": "c",
+        "common_structs.h": "c",
+        "libaudio.h": "c",
+        "ultratypes.h": "c"
+    }
+}
