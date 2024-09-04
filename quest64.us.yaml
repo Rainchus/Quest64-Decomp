@@ -310,8 +310,8 @@ segments:
       - [0x72F30, .rodata, xldtob]
       - [0x72F90, .rodata, reverb]
       - [0x72FC0, .rodata, seq]
-      - [0x72FD0, databin, ucode_data]
-      - [0x737D0, databin]
+      - [0x72FD0, rodata, ucode_data]
+      - [0x737D0, rodata]
       - { start: 0x73A90, type: bss, vram: 0x80072E90 }
 
   - type: databin
@@ -327,14 +327,11 @@ segments:
     dir: overlays/title
     start: 0xDA68F0
     vram: 0x80100000
-    follows_vram: unkData
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0xDA68F0, asm]
-    - [0xDA7404, asm]
+    - [0xDA68F0, c, DA68F0]
     - [0xDA9A00, data]
-    - [0xDC15C0, rodata, DA68F0]
-    - [0xDC15E0, rodata, DA7404]
+    - [0xDC15C0, .rodata, DA68F0]
 
   - name: ovl_intro
     exclusive_ram_id: overlay
@@ -342,14 +339,13 @@ segments:
     dir: overlays/intro
     start: 0xDC1620
     vram: 0x80100000
-    follows_vram: unkData
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0xDC1620, asm]
-    - [0xDC4700, asm]
-    - [0xDC7820, asm]
+    - [0xDC1620, c, DC1620]
+    - [0xDC4700, c, DC4700]
+    - [0xDC7820, c, DC7820]
     - [0xDC7860, data]
-    - [0xE2781C, rodata, DC1620]
+    - [0xE27810, .rodata, DC1620]
 
   - name: ovl_ending
     exclusive_ram_id: overlay
@@ -357,18 +353,16 @@ segments:
     dir: overlays/ending
     start: 0xE27840
     vram: 0x80100000
-    follows_vram: unkData
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0xE27840, asm]
-    - [0xE2ADEC, data]
+    - [0xE2ADE0, data]
 
   - name: sound_data
     type: data
     dir: sound/
     start: 0xE7E800
     vram: 0x8037A480
-    follows_vram: unkData
     subsegments:
     - [0xE7E800, data, instrument_ctl]
     - [0xE81610, data, instrument_tbl]
