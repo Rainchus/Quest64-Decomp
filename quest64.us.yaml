@@ -70,7 +70,7 @@ segments:
     vram: 0x80000450
     follows_vram: entry
     bss_size: 0x239C0
-    symbol_name_format: $VRAM_$ROM
+    symbol_name_format: $VRAM
     subsegments:
       - [0x1050, asm, init]
       - [0x1130, asm, nnsched]
@@ -369,6 +369,6 @@ segments:
     - [0xEEE020, data, SE_ctl]
     - [0xEEFCE0, data, SE_tbl]
   
-  - [0xF94380, databin, trailer] #0xFFs til the end
+  - [0xF94380, databin, rompad] #0xFFs til the end
 
   - [0x1000000]
