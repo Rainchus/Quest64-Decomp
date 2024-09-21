@@ -22,23 +22,25 @@ LD_PATH = f"{BASENAME}.ld"
 ELF_PATH = f"build/{BASENAME}"
 MAP_PATH = f"build/{BASENAME}.map"
 PRE_ELF_PATH = f"build/{BASENAME}.elf"
+OVERLAY_INTRO_PATH = "src/overlays/intro"
 
 COMMON_INCLUDES = "-I. -Iinclude -Iinclude/2.0I/ -Iinclude/2.0I/PR -Isrc"
-
-#-Iinclude/PR -Iassets -Isrc
 
 GAME_CC_DIR = f"$ASM_PROC $ASM_PROC_FLAGS {TOOLS_DIR}/ido_5.3/usr/lib/cc --$AS $ASFLAGS"
 LIB_CC_DIR = f"$ASM_PROC $ASM_PROC_FLAGS {TOOLS_DIR}/ido_5.3/usr/lib/cc --$AS $ASFLAGS"
 WARNINGS = "-fullwarn -verbose -Xcpluscomm -signed -nostdinc -non_shared -Wab,-r4300_mul -D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -woff 649,838"
-GAME_COMPILE_CMD = (
+
+GAME_OVERLAY_COMPILE_CMD = (
     f"{GAME_CC_DIR} {COMMON_INCLUDES} -- -c -G 0 {WARNINGS} {COMMON_INCLUDES} -mips2 -O2"
+)
+
+GAME_COMPILE_CMD = (
+    f"{GAME_CC_DIR} {COMMON_INCLUDES} -- -c -G 0 {WARNINGS} {COMMON_INCLUDES} -mips2 -O2 -g3"
 )
 
 LIB_COMPILE_CMD = (
     f"{LIB_CC_DIR} -c -B {LIB_CC_DIR}/ee- {COMMON_INCLUDES} -O2 -G0"
 )
-
-WIBO_VER = "0.6.4"
 
 def exec_shell(command: List[str]) -> str:
     ret = subprocess.run(
@@ -122,6 +124,12 @@ def build_stuff(linker_entries: List[LinkerEntry]):
     )
 
     ninja.rule(
+        "overlaycc",
+        description="cc (overlay) $in",
+        command=f"{GAME_OVERLAY_COMPILE_CMD} -o $out $in",
+    )
+
+    ninja.rule(
         "libcc",
         description="cc $in",
         command=f"{LIB_COMPILE_CMD} $in -o $out",
@@ -159,10 +167,10 @@ def build_stuff(linker_entries: List[LinkerEntry]):
         ):
             build(entry.object_path, entry.src_paths, "as")
         elif isinstance(seg, splat.segtypes.common.c.CommonSegC):
-            if any(
-                str(src_path).startswith("src/lib/") for src_path in entry.src_paths
-            ):
+            if any(str(src_path).startswith("src/lib/") for src_path in entry.src_paths):
                 build(entry.object_path, entry.src_paths, "libcc")
+            elif any(str(src_path).startswith(OVERLAY_INTRO_PATH) for src_path in entry.src_paths):
+                build(entry.object_path, entry.src_paths, "overlaycc")
             else:
                 build(entry.object_path, entry.src_paths, "cc")
         elif isinstance(seg, splat.segtypes.common.databin.CommonSegDatabin):
@@ -202,16 +210,6 @@ if __name__ == "__main__":
         action="store_true",
     )
     args = parser.parse_args()
-
-    try:
-        exec_shell(["wibo"])
-    except FileNotFoundError:
-        print("ERROR: wibo does not appear to be accessible")
-        print("To install it, please download it and put it in your PATH:")
-        print(
-            f"  wget https://github.com/decompals/wibo/releases/download/{WIBO_VER}/wibo && chmod +x wibo && sudo mv wibo /usr/bin/"
-        )
-        sys.exit(1)
 
     if args.clean:
         clean()
