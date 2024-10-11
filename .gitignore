@@ -2,6 +2,7 @@ asm/
 assets/
 build/
 expected/
+nonmatchings/
 .ninja_log
 .splache
 baserom.us.z64
