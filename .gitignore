@@ -1,6 +1,7 @@
 asm/
 assets/
 build/
+expected/
 .ninja_log
 .splache
 baserom.us.z64
