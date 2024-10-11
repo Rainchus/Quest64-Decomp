@@ -1112,7 +1112,6 @@
 #define MI_INTR_SP 0x01
 #define DPS_TBIST_GO 0x02
 #define G_CCMUX_SHADE_ALPHA 11
-#define _OVL_ENDING_H_ 
 #define G_CC_MODULATERGBDECALA G_CC_MODULATEIDECALA
 #define RAMROM_APP_WRITE_ADDR (RAMROM_MSG_ADDR + (1*RAMROM_BUF_SIZE))
 #define gsDPSetBlendMask(mask) gsDPNoOp()
@@ -1899,6 +1898,7 @@
 #define CONT_EEPROM_BUSY 0x80
 #define CHNL_ERR_COLLISION 0x40
 #define AL_PAN_CENTER 64
+#define _33D0_H_ 
 #define PHYS_TO_K0(x) ((u32)(x)|0x80000000)
 #define PHYS_TO_K1(x) ((u32)(x)|0xA0000000)
 #define G_MWO_POINT_ST 0x14
@@ -3848,190 +3848,109 @@ Vec3f pos;
 Vec3f rot;
 } PosRot;
 typedef struct {
-    s16 unk0;
-    char unk2[2];
-    s32 unk4;
-    s32 unk8;
-    char unkC[4];
-    char unk10[4];
-    char unk14[4];
-    char unk18[4];
-    s32 unk1C;
-    s16 unk20;
-    s16 unk22;
-    s16 unk24;
-    s16 unk26;
-    s16 unk28;
-    s16 unk2A;
-    char unk2C[4];
-    void* unk30;
-    void* unk34;
-    char unk38[0x18];
-}unk8015701c;
-typedef struct {
-    char unk0[0x22];
-    s16 unk22;
-    char unk24[4];
-}unk1061b0_2;
-typedef struct {
-    unk1061b0_2* unk0;
-    s32 unk4;
-}unk801061B0;
+    u16 map;
+    u16 submap;
+    f32 x;
+    f32 z;
+    f32 yrot;
+}SaveSpawnLocation;
 typedef struct {
     s32 unk0;
-    s16 unk4;
-    s16 unk6;
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-    s16 unk12;
-    s32 unk14;
-    s32 unk18;
-    f32 unk1C;
-    f32 unk20;
-    s16 unk24;
-    s16 unk26;
-    s16 unk28;
-    s16 unk2A;
-    s16 unk2C;
-    s16 unk2E;
-    s16 unk30;
-    s16 unk32;
-    s16 unk34;
-    char unk36[2];
-    s32 unk38;
-    s32 unk3C;
-    f32 unk40;
-    f32 unk44;
-    f32 unk48;
-    s16 unk4C;
-    s16 unk4E;
-}unk80156fe8_s;
-extern unk80156fe8_s D_80156FE8[];
-extern unk801061B0 D_801061B0_ovl_ending[];
-extern u32 D_801061B8_ovl_ending;
-extern unk8015701c D_8015701C[];
-extern s32 D_801035A0_ovl_ending;
-extern s32 D_801035A4_ovl_ending;
-extern s32 D_80156FC0;
-extern s32 D_80156FC4;
-extern s32 D_80156FC8;
-extern s32 D_80156FCC;
-extern s32 D_80156FD0;
-extern s32 D_80156FD4;
-extern s32 D_80156FD8;
-extern s32 D_80156FDC;
-extern s32 D_80156FE0;
-extern s32 D_80156FE4;
-void func_80100970_ovl_ending(void);
-s32 func_80100184_ovl_ending(void);
-void func_80100000_ovl_ending(void) {
-    func_80100970_ovl_ending();
-    D_80156FC0 = 0xA;
-    D_80156FC4 = 1;
-    D_80156FC8 = 0x12C;
-    D_80156FCC = 0xDF;
-    D_80156FDC = 0;
-    D_80156FE0 = 0;
-    D_80156FD0 = 0;
-    D_80156FD4 = 0;
-    D_80156FE4 = 0;
-    D_801035A0_ovl_ending = 0;
-    D_801035A4_ovl_ending = 0;
-    D_80156FD8 = 0;
-}
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_8010008C_E278CC.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100184_ovl_ending.s")
-s32 func_8010082C_ovl_ending(s32 arg0, u32* arg1) {
-    u32 i,j;
-    for (i = 0; i < D_801061B8_ovl_ending; i++) {
-        for (j = 0; j < D_801061B0_ovl_ending[i].unk4; j++) {
-            if (arg0 == D_801061B0_ovl_ending[i].unk0[j].unk22) {
-                *arg1 = i;
-                return j;
-            }
+    s32 unk4;
+    s32 unk8;
+    u16 unkC;
+    char unkE[2];
+    s32 unk10;
+    f32 unk14;
+}unk80085368;
+typedef struct PlayerMainData{
+             u16 unk0;
+             s16 unk2;
+             u16 currHP;
+             u16 maxHP;
+             u16 currMP;
+             u16 maxMP;
+             u16 agi;
+             u16 def;
+             s32 exp;
+             s32 stone;
+             f32 collisionSize;
+             f32 unk1C;
+             f32 unk20;
+             u8 elements[4];
+             u16 HPXP;
+             u16 MPXP;
+             u16 agiXP;
+             u16 defXP;
+             u8 HPLevel;
+             u8 MPLevel;
+             u8 agiLevel;
+             u8 defLevel;
+             u8 spiritLevel;
+             u8 unk35;
+             u8 unk36;
+             u8 unk37;
+             u16 unk38;
+             s16 unk3A;
+             s16 unk3C;
+             s16 unk3E;
+             u16 unk40;
+             s16 unk42;
+             char unk44[0x4];
+             void* PlayerMainData;
+}PlayerMainData;
+typedef struct {
+             PosRot posrot;
+             Vec3f speed;
+             f32 scale;
+             f32 shadowScale;
+             Vec3f shadowRot;
+             f32 unk38;
+             f32 unk3C;
+             f32 unk40;
+             f32 unk44;
+             f32 unk48;
+             f32 unk4C;
+             s16 unk50;
+             s16 currentAnimID;
+             s16 currentAnimFrame;
+             u16 totalAnimFrames;
+             u16 animFramerate;
+             s16 unk5A;
+             s16 unk5C;
+             s16 unk5E;
+             u16 unk60;
+             u16 unk62;
+             PlayerMainData* playerMainData;
+             void* playerStatusPtr;
+             u8 status[7];
+}PlayerPosData;
+extern SaveSpawnLocation gSaveSpawnLocationTbl[17];
+extern unk80085368 D_80085368;
+extern PlayerMainData gPlayerMainData;
+extern PlayerPosData gPlayerData1;
+void func_80002EA0(void);
+void func_8001D8B0(PlayerPosData* player, s32 next_anim, s32 next_anim_framerate, s32 arg3, s32 arg4, u16 arg5) {
+    if (next_anim != -1) {
+        if (next_anim != player->currentAnimID) {
+            player->currentAnimID = next_anim;
+            player->unk60 = player->unk60 | 0x400;
+            player->unk60 = player->unk60 & 0xFDFF;
+        }
+        player->animFramerate = next_anim_framerate;
+        if (arg5 & 1) {
+            player->currentAnimFrame = player->totalAnimFrames = 0;
         }
     }
-    return -1;
+    if (arg3 != -1) {
+        if (arg3 != player->unk5A) {
+            player->unk5A = arg3;
+        }
+        player->unk5C = arg4;
+    }
 }
-void func_801008A8_ovl_ending(s16 arg0, s32 arg1, s16 arg2, s16 arg3, s16 arg4, s16 arg5, s16 arg6, s16 arg7, s16 arg8, s16 arg9, s32 argA, s32 argB, s32 argC, s32 argD) {
-    unk80156fe8_s* temp_v0;
-    temp_v0 = &D_80156FE8[arg0];
-    temp_v0->unk0 = arg1;
-    temp_v0->unk4 = arg2;
-    temp_v0->unk6 = arg3;
-    temp_v0->unkC = arg4;
-    temp_v0->unkE = arg5;
-    temp_v0->unk8 = arg6;
-    temp_v0->unkA = arg7;
-    temp_v0->unk10 = arg8;
-    temp_v0->unk12 = arg9;
-    temp_v0->unk14 = argB;
-    temp_v0->unk18 = argA;
-    temp_v0->unk4C = 0;
-    temp_v0->unk4E = 0xFF;
-    temp_v0->unk32 = 0;
-    temp_v0->unk24 = 0;
-    temp_v0->unk34 = 0;
-    temp_v0->unk40 = 0.0f;
-    temp_v0->unk44 = 0.0f;
-    temp_v0->unk48 = 0.0f;
-    temp_v0->unk1C = 0.0f;
-    temp_v0->unk20 = 0.0f;
-    temp_v0->unk38 = argC;
-    temp_v0->unk3C = argD;
-    temp_v0->unk2E = temp_v0->unk30 = 0;
-}
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100970_ovl_ending.s")
-void func_80100A94_ovl_ending(s32 arg0) {
-    unk80156fe8_s* temp_v0;
-    temp_v0 = &D_80156FE8[arg0];
-    temp_v0->unk0 = 0;
-    temp_v0->unk4 = 0;
-    temp_v0->unk6 = 0;
-    temp_v0->unkC = 0;
-    temp_v0->unkE = 0;
-    temp_v0->unk8 = 0;
-    temp_v0->unkA = 0;
-    temp_v0->unk10 = 0;
-    temp_v0->unk12 = 0;
-    temp_v0->unk14 = 0;
-    temp_v0->unk18 = 0;
-    temp_v0->unk4E = 0xFF;
-    temp_v0->unk32 = 0;
-    temp_v0->unk24 = 0;
-    temp_v0->unk2A = 0;
-    temp_v0->unk2C = 0;
-    temp_v0->unk26 = 0;
-    temp_v0->unk28 = 0;
-    temp_v0->unk34 = 0;
-    temp_v0->unk4C = 0;
-    temp_v0->unk38 = 0;
-    temp_v0->unk3C = 0;
-    temp_v0->unk48 = 0.0f;
-    temp_v0->unk1C = 0.0f;
-    temp_v0->unk20 = 0.0f;
-    temp_v0->unk40 = 0.0f;
-    temp_v0->unk44 = 1.0f;
-    temp_v0->unk2E = temp_v0->unk30 = 0;
-}
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100B38_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100BE8_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100C98_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100D80_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80100EE4_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80101040_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_8010107C_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80101180_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80101284_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80101500_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80101534_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_801016B4_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_80101834_ovl_ending.s")
-void func_80101880_ovl_ending(s32 arg0) {
-    D_8015701C[arg0].unk0 = 0;
-}
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_8010189C_ovl_ending.s")
-#pragma GLOBAL_ASM("asm/nonmatchings/overlays/ending/E27840/func_801028DC_ovl_ending.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1E4B0/func_8001D924.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1E4B0/func_8001DB38.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1E4B0/func_8001DC78.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1E4B0/func_8001E0AC.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/1E4B0/func_8001E138.s")
