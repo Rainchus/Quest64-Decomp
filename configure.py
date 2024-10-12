@@ -23,6 +23,7 @@ ELF_PATH = f"build/{BASENAME}"
 MAP_PATH = f"build/{BASENAME}.map"
 PRE_ELF_PATH = f"build/{BASENAME}.elf"
 OVERLAY_INTRO_PATH = "src/overlays/intro"
+OVERLAY_ENDING_PATH = "src/overlays/ending"
 
 COMMON_INCLUDES = "-I. -Iinclude -Iinclude/2.0I/ -Iinclude/2.0I/PR -Isrc"
 
@@ -60,9 +61,9 @@ def clean():
 def write_permuter_settings():
     with open("permuter_settings.toml", "w") as f:
         f.write(
-            f"""compiler_command = "{GAME_COMPILE_CMD}"
-assembler_command = "$ASFLAGS"
-compiler_type = "gcc"
+            f"""compiler_command = "{GAME_OVERLAY_COMPILE_CMD}"
+assembler_command = "mips-linux-gnu-as -EB -mtune=vr4300 -march=vr4300 -mabi=32"
+compiler_type = "ido"
 
 [preserve_macros]
 
@@ -170,6 +171,8 @@ def build_stuff(linker_entries: List[LinkerEntry]):
             if any(str(src_path).startswith("src/lib/") for src_path in entry.src_paths):
                 build(entry.object_path, entry.src_paths, "libcc")
             elif any(str(src_path).startswith(OVERLAY_INTRO_PATH) for src_path in entry.src_paths):
+                build(entry.object_path, entry.src_paths, "overlaycc")
+            elif any(str(src_path).startswith(OVERLAY_ENDING_PATH) for src_path in entry.src_paths):
                 build(entry.object_path, entry.src_paths, "overlaycc")
             else:
                 build(entry.object_path, entry.src_paths, "cc")

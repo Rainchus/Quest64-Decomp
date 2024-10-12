@@ -15,7 +15,8 @@ options:
   ld_symbol_header_path: include/ld_addrs.h
   ld_script_path: quest64.ld
   ld_dependencies: True
-
+  ld_generate_symbol_per_data_segment: False
+  
   find_file_boundaries: True
   header_encoding: ASCII
 
@@ -81,6 +82,7 @@ segments:
       - [0xC120, c, C120]
       - [0xC910, c, C910]
       - [0xFA60, c, FA60]
+      - [0x10C80, c, 10C80]
       - [0x12450, c, shadow]
       - [0x12740, c, 12740]
       - [0x15440, c, 15440]
@@ -276,6 +278,7 @@ segments:
       - [0x71DD0, .rodata, C120]
       - [0x71DF0, .rodata, C910]
       - [0x71E60, .rodata, FA60]
+      - [0x71EB0, .rodata, 10C80]
       - [0x71EC0, .rodata, 12740]
       - [0x72090, .rodata, 15440]
       - [0x72130, .rodata, 191F0]
@@ -343,7 +346,7 @@ segments:
     subsegments:
     - [0xDC1620, c, DC1620]
     - [0xDC4700, c, DC4700]
-    - [0xDC7820, c, DC7820]
+    - [0xDC7820, data]
     - [0xDC7860, data]
     - [0xE27810, .rodata, DC1620]
 
@@ -355,19 +358,19 @@ segments:
     vram: 0x80100000
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0xE27840, asm]
+    - [0xE27840, c]
     - [0xE2ADE0, data]
 
   - name: sound_data
-    type: data
+    type: databin
     dir: sound/
     start: 0xE7E800
     vram: 0x8037A480
     subsegments:
-    - [0xE7E800, data, instrument_ctl]
-    - [0xE81610, data, instrument_tbl]
-    - [0xEEE020, data, SE_ctl]
-    - [0xEEFCE0, data, SE_tbl]
+    - [0xE7E800, databin, instrument_ctl]
+    - [0xE81610, databin, instrument_tbl]
+    - [0xEEE020, databin, SE_ctl]
+    - [0xEEFCE0, databin, SE_tbl]
   
   - [0xF94380, databin, rompad] #0xFFs til the end
 

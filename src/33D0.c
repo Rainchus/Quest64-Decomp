@@ -1,10 +1,14 @@
 #include "common.h"
+#include "1850.h"
+#include "33D0.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/33D0/func_800027D0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/33D0/func_80002918.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/33D0/func_80002EA0.s")
+
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/33D0/func_80002F60.s")
 
