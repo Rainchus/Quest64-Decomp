@@ -16,6 +16,7 @@ options:
   ld_script_path: quest64.ld
   ld_dependencies: True
   ld_generate_symbol_per_data_segment: False
+  asm_emit_size_directive: true
   
   find_file_boundaries: True
   header_encoding: ASCII
