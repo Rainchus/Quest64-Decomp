@@ -13,8 +13,7 @@ nnScRemoveClient          = 0x80000824;
 nnScExecuteAudio          = 0x80000900;
 nnScExecuteGraphics       = 0x80000A80;
 nnScWaitTaskReady         = 0x80000BB4;
-
-get_rand                       = 0x80022FD0; //rom:0x23BD0 type:func
+get_rand                  = 0x80022FD0; //rom:0x23BD0 type:func
 calc_arctan_in_radians    = 0x80023028; //rom:0x23C28 type:func
 rotateCoordinatesByAngle  = 0x800232F4; //rom:0x23EF4 type:func
 dma_write                 = 0x80024260; //type:func
@@ -25,6 +24,8 @@ __osPfsPifRam = 0x80095660;
 __osSiRawStartDma = 0x80046950;
 __osPiDevMgr = 0x8006F420; //size:0x1c
 
+D_80090398 = 0x80090398; //size:0xC8
+D_800904E0 = 0x800904E0; //size:0xC8
 piThread = 0x80092D50;
 piThreadStack = 0x80092F00;
 piEventQueue = 0x80093F00;

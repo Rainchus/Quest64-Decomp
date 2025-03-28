@@ -15,32 +15,6 @@ typedef struct {
     void *unkD14C; 
 }unk111Cs;
 
-//unsorted symbols
-extern s32 gGameState;
-extern u16 gGameMode;
-extern s32 gNextMap;
-extern s32 gNextSubmap;
-extern s32 D_80084EF8;
-extern s32 D_80084F04;
-extern u16 D_80084F14;
-extern f32 D_80086E44;
-extern s16 D_800859E2;
-extern u32 gCurrentMap;
-extern s32 gCurrentSubmap;
-extern s32 D_80085370;
-extern s16 D_8007BA60;
-extern u16 D_8007BA62;
-extern u16 D_8007B2E8;
-extern s16 D_8007B2F0;
-extern u8 D_8007B344;
-extern s8 D_8007B345;
-extern s32 D_8007B348;
-extern f32 D_8007BA40;
-extern f32 D_8007BA44;
-extern f32 D_8007BA48;
-extern s32 D_8007BA4C;
-extern s16 D_8007BA64;
-
 extern OSMesgQueue D_8007B320;
 extern OSMesg D_8007B338;
 extern u8 D_E7E800[0x2E10];
@@ -52,7 +26,6 @@ extern NNSched D_8007B358;
 extern s32 osTvType;
 extern OSViMode D_8006F4F0;
 extern OSViMode D_8006FDB0;
-extern OSMesgQueue gSIMessageQ;
 extern OSMesgQueue D_8007B3CC;
 extern OSMesgQueue D_8007B9E8;
 extern void* D_8007BA00;

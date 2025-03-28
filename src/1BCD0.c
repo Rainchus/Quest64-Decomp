@@ -33,11 +33,11 @@ typedef struct {
     f32 unk7C;
     s32 unk80;
     f32 unk84;
-}struct_80086DC0;
+} struct_80086DC0;
 
 typedef struct {
     char unk00[0xC0];
-    Mtx unkC0[];
+    Mtx unkC0[VLA];
 } teststruct;
 
 extern Mtx D_2000000[];

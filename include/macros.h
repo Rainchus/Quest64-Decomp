@@ -13,4 +13,19 @@
 #define __attribute__(x)
 #endif
 
+#define UNK_SIZE_0 0x20
+#define UNK_SIZE_1 0x10
+#define INVENTORY_SIZE 151
+#define UNK_SIZE_2 1
+
+#ifdef OLD_GCC
+#define VLA 0
+#else
+#define VLA
+#endif
+
+#ifdef M2CTX
+#define VLA 0
+#endif
+
 #endif

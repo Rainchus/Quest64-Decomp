@@ -95,7 +95,7 @@ void func_80000EEC(void) {
     D_80084F14 = 0xFFFF;
     D_80086E44 = 0.0f;
     D_800859E2 = 0;
-    gCurrentMap = MAP_MONASTERY;
+    gCurrentMap = (u32)MAP_MONASTERY;
     gCurrentSubmap = SUBMAP_ABBOTS_CHAMBER;
     D_80085368.unk8 = -1;
     D_8007BA60 = 0xD;
