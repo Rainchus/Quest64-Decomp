@@ -48,7 +48,9 @@ extern s8 D_8008FD2B;
 extern u8 D_8008FD2C;
 extern u8 D_8008FD23;
 extern u16 gGameMode;
-
+void func_8002E234(u32 arg0);
+s32 func_80031890(s32 arg0, u8 arg1);
+s32 func_80031A44(s8, s8, s32, s32, u8*);
 s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel);
 s32 func_80031574(s8);
 s32 func_800319E0(s8, s8, s32, s32, void*);
@@ -311,7 +313,99 @@ void func_8002D614(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002D748.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002D8BC.s")
+void func_8002D8BC(void) {
+    s32 temp_v0_2;
+    s32 var_v1;
+    s32 var_a0;
+    s32 var_a2;
+
+    if (D_8008FD30[D_8008FD2A].unk_00 == -2) {
+        var_a2 = D_80092A38[gCurrControllerNum].unk_00 & 0xF;
+        for (var_a0 = 0xF; var_a0 >= 0; ) {
+            var_v1 = 0;
+            var_a0++;
+            do {
+                if (var_a0 == D_8008FD30[var_v1].unk_01) {
+                    var_v1 = 0x7F;
+                    break;
+                }
+                var_v1++;
+            } while (var_v1 < var_a2);
+            
+            if (var_v1 != 0x7F) {
+                var_a2 = var_a0;
+                var_a0 = -1;
+            }
+        }
+        
+        D_8008FD30[D_8008FD2A].unk_01 = var_a2;
+        if (D_8008FD2A + 1 < 16) {
+            D_8008FD30[D_8008FD2A + 1].unk_01 = -2;
+        }
+        temp_v0_2 = func_80031890(gCurrControllerNum, var_a2);
+        if (temp_v0_2 >= 0) {
+            D_8008FD30[D_8008FD2A].unk_00 = temp_v0_2;
+        } else {
+           
+        }
+        func_8002E234(D_8008FD2A);
+    } else {
+        func_8002E234(D_8008FD2A);
+    }
+    var_a0 = func_80031A44(gCurrControllerNum, D_8008FD30[D_8008FD2A].unk_00, 0, 0x80, (u8*)&D_8008FD58[D_8008FD2A]);
+    if (var_a0 != 0) {
+        D_8008FD24 = var_a0;
+        var_a0 = -func_80031BB0(var_a0);
+        switch (var_a0) {
+            default:
+                D_8008FD22 = 0x11;
+                D_8008FD29 = 0xA;
+                break;
+            case 1:
+                D_8008FD22 = 0xD;
+                D_8008FD29 = 0xA;
+                break;
+            case 4:
+                D_8008FD22 = 0xE;
+                D_8008FD29 = 0xA;
+                break;
+
+        }
+        D_8008FD20 &= ~(1 | 2 | 4);
+        D_8008FD20 |= (1 | 4);
+        D_8008FD20 &= ~0x2000;
+        return;
+    }
+    var_a0 = func_80031A44(gCurrControllerNum, D_8008FD30[D_8008FD2A].unk_00, 0x80, 0xE0, (u8*)&D_80090398.unk_00);
+    if (var_a0 != 0) {
+        D_8008FD24 = var_a0;
+        var_a0 = -func_80031BB0(var_a0);
+        switch (var_a0) {
+            default:
+                D_8008FD22 = 0x11;
+                D_8008FD29 = 0xA;
+                break;
+            case 1:
+                D_8008FD22 = 0xD;
+                D_8008FD29 = 0xA;
+                break;
+            case 4:
+                D_8008FD22 = 0xE;
+                D_8008FD29 = 0xA;
+                break;
+
+        }
+        D_8008FD20 &= ~(1 | 2 | 4);
+        D_8008FD20 |= (1 | 4);
+        D_8008FD20 &= ~0x2000;
+        return;
+    }
+    D_8008FD20 &= ~(1 | 2 | 4);
+    D_8008FD20 |= (1 | 4);
+    D_8008FD20 &= ~0x2000;
+    D_8008FD22 = 0x17;
+    D_8008FD29 = 0xA;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002DBE0.s")
 
@@ -375,7 +469,7 @@ void func_8002DF6C(void) {
     D_8008FD0C &= ~0x10;
 }
 
-void func_80029B58(s32, s32, s32, s32, s32);                   /* extern */
+void func_80029B58(s32, s32, s32, s32, s32);
 
 void func_8002DFD0(void) {
     func_80029B58(0, 0x3C, 0x22, 0xC8, 0xAB);
@@ -401,7 +495,7 @@ void func_8002DFD0(void) {
     func_80029B58(0x47, 0xA2, 0xA6, 0x18, 0xE);
 }
 
-void func_8002E234(s32 arg0) {
+void func_8002E234(u32 arg0) {
     SaveData* temp_a2;
     s32 i;
     u8* ptr1;
