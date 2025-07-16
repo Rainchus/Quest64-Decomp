@@ -41,6 +41,63 @@ typedef struct {
     u16 unk1A;
 }struct_8008C668;
 
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    u16 unk6;
+    u16 unk8;
+    s16 unkA;
+    u16 unkC;
+    u16 unkE;
+    char unk10[0x16];
+    u16 unk26;
+    u16 unk28;
+    u16 unk2A;
+}unk203d0s2;
+
+typedef struct {
+    char unk0[0x20];
+    unk203d0s2* unk20;
+    char unk24[0x6C];
+    u16 unk90;    
+}unk203d0s;
+
+typedef struct {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+}struct_8008C748;
+
+typedef struct {
+    char unk0[10];
+}struct_803A8DD8;
+
+typedef struct STRUCT_803A8E0C {
+    s16 unk0;
+    s16 unk2;
+    u16 unk4;
+    float unk8;
+    float unkC;
+} STRUCT_803A8E0C;
+
+extern STRUCT_803A8E0C D_803A8E0C[];
+
+extern u16 D_8004D2CC[];
+extern u16 D_8004D2DC[];
+extern struct_8008C748 D_8008C748;
+extern struct_803A8DD8 D_803A8DD8[];
+
+extern s32 *D_8007D0AC;
+extern s32 D_8008C648;
+extern s32 D_8008C64C;
+extern u8 gPal_Ci8_HUD[];
+extern u8 gPal_Ci8_HUD_magic[];
+extern unk20e2cs D_803A6F40;
+extern unk20e2cs gHUD_magic_texture_attributes;
+extern unk203d0s* D_8007D088;
+
 extern struct_8008C668 D_8008C668[8];
 
 extern u8 gHUD_status_symbols_attributes[];
@@ -69,6 +126,8 @@ extern s32 D_8008C654;
 extern s32 D_8008C658; //number of pixels wide to display of the HUD left to right.
 extern s32 D_8008C65C; //number of pixels high to display the HUD top to bottom
 extern unk20e2cs D_803A6F40;
+
+s32 func_800177F8(u16 arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, void* arg6, void* arg7, TransformAnim* arg8);
 
 s32 count_digits(s32 arg0, u8* arg1, u16 arg2);
 s32 func_8002413C(f32 arg0, f32 arg1, f32 arg2, s32* arg3, s32* arg4);
@@ -197,17 +256,190 @@ void func_8001F818(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/hud/func_8001FB94.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_8001FCF8.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_8001FCF8.s")
+void func_8001FCF8(MonsterBattleData* arg0, u16 arg1, u16 arg2, s16 arg3) {
+
+    u32 i;
+    UnknownMonsterData2* temp_t2 = arg0->unk68;
+
+    for(i = 0; i < 7; i++) {
+        if (D_8004D2CC[i] & arg1) {
+            temp_t2->status[i] = arg2;
+            temp_t2->unk22[i] = arg3;
+            break;
+        }
+    }
+
+    for(i = 0; i < 4; i++) {
+    f32 var_f0;
+    void* p;
+    u16 temp;
+        
+        if ((D_8004D2DC[i] & arg1) && (temp_t2->unk44[i] == 0)) {
+            temp_t2->unk32[i] = arg3;
+            D_8008C748.unk0 = D_803A8E0C[arg2].unk8;
+            D_8008C748.unk4 = D_803A8E0C[arg2].unkC;
+            D_8008C748.unk8 = 1.0f;
+            p = &D_803A8DD8[D_803A8E0C[arg2].unk0];
+            if (((MonsterBaseData*)arg0->transformAnimation.unk64)->monsterType == 1) {
+                var_f0 = (D_803A8E0C[arg2].unk4 & 0x100) 
+                    ? arg0->unk68->unk94
+                    : arg0->unk68->unk94 - (((MonsterBaseData*)arg0->transformAnimation.unk64)->hitboxHeight * arg0->transformAnimation.scale);
+            } else {
+                var_f0 = (D_803A8E0C[arg2].unk4 & 0x100) 
+                    ? (f32)(arg0->transformAnimation.posrot.pos.y + (((MonsterBaseData*)arg0->transformAnimation.unk64)->hitboxWidth * 0.5 * arg0->transformAnimation.scale)) 
+                    : arg0->transformAnimation.posrot.pos.y;
+            }
+            temp_t2->unk44[i] = 
+                func_800177F8(D_803A8E0C[arg2].unk2, D_803A8E0C[arg2].unk4, arg0->transformAnimation.posrot.pos.x, var_f0, arg0->transformAnimation.posrot.pos.z, 0.0f, p, &D_8008C748, (void*)arg0);
+            return;        
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/hud/func_8001FEEC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_800202E4.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_800202E4.s")
+void func_800202E4(MonsterBattleData *arg0)
+{
+    u32 i;
+    UnknownMonsterData2 *temp_v0;
+    UnknownMonsterData3 *temp_a0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_800203D0.s")
+    temp_v0 = arg0->unk68;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_80020888.s")
+    for(i = 0; i < 7; i++) {
+        if(temp_v0->status[i] != 0) {
+            temp_v0->status[i] = 0;
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_800208B8.s")
+    for(i = 0; i < 4; i++) {
+        if (temp_v0->unk44[i] != NULL)
+        {
+            temp_a0 = temp_v0->unk44[i];
+            temp_a0->unk0 = 8;
+            temp_a0->unk8 &= ~1;
+            temp_v0->unk44[i] = NULL;
+        }
+    }
+}
+
+void blankfunc1 (void){
+    return;
+}
+
+void blankfunc2 (void){
+    return;
+}
+
+void blankfunc3 (void){
+    return;
+}
+
+void blankfunc4 (void){
+    return;
+}
+
+void blankfunc5 (void){
+    return;
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_800203D0.s")
+void func_800203D0(void)
+{
+  unk20e2cs *new_var;
+  D_8008C648 = 0xB5;
+  D_8008C64C = 0x1A;
+
+  //Load palette for popup menues  
+  gDPPipeSync(gMasterGfxPos++);
+  gDPSetTextureImage(gMasterGfxPos++, 0, G_IM_SIZ_16b, 1, gPal_Ci8_HUD_magic);
+  gDPTileSync(gMasterGfxPos++);
+  gDPSetTile(gMasterGfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);  gDPLoadSync(gMasterGfxPos++);
+  gDPLoadTLUTCmd(gMasterGfxPos++, G_TX_LOADTILE, 255);  
+  gDPPipeSync(gMasterGfxPos++);
+    
+  new_var = &gHUD_magic_texture_attributes;
+  if (D_8007D088->unk90 & 0x80)
+  {
+    func_800210FC((s32) new_var, 0, 0, 0x6E, 0x10, 0x64, 0x1C, 0x400, 0x400);
+    func_800210FC((s32) new_var, 0, 0x10, 0x6E, 0x10, 0x64, 0x2C, 0x400, 0x400);
+    func_800210FC((s32) new_var, 0, 0x20, 0x6E, 0x10, 0x64, 0x3C, 0x400, 0x400);
+    func_800210FC((s32) new_var, 0, 0x30, 0x6E, 4, 0x64, 0x4C, 0x400, 0x400);
+  }
+  else
+  {
+    func_800210FC((s32) new_var, 0, 0, 0x6E, 0x10, 0x64, 0x1C, 0x400, 0x400);
+    func_800210FC((s32) new_var, 0, 0x10, 0x6E, 0xA, 0x64, 0x2C, 0x400, 0x400);
+    func_800210FC((s32) new_var, 0, 0x1A, 0x6E, 2, 0x64, 0x4E, 0x400, 0x400);
+  }
+  func_80020B4C(4, 0x11, 0, D_8007D0AC[D_8007D088->unk20->unk2]);
+  func_80020E2C(&D_803A6F40, 0x20, 0x1D, 0x80, 0xA);
+
+  //Load palette for HUD  
+  gDPSetTextureImage(gMasterGfxPos++, 0, G_IM_SIZ_16b, 1, gPal_Ci8_HUD);
+  gDPTileSync(gMasterGfxPos++);
+  gDPSetTile(gMasterGfxPos++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);  gDPLoadSync(gMasterGfxPos++);
+  gDPLoadTLUTCmd(gMasterGfxPos++, G_TX_LOADTILE, 255);
+  gDPPipeSync(gMasterGfxPos++);
+  if (D_8007D088->unk90 & 0x80)
+  {
+    func_80020D4C(3U, 0x10, 0x1C, (s32) D_8007D088->unk20->unk6);
+    func_80020D4C(3U, 0x10, 0x26, (s32) D_8007D088->unk20->unkE);
+    func_80020D4C(3U, 0x46, 0x1C, (s32) D_8007D088->unk20->unk2A);
+    func_80020D4C(3U, 0x46, 0x26, (s32) D_8007D088->unk20->unkC);
+    if (D_8007D088->unk20->unk26 != 4)
+    {
+      func_800210FC((s32) (&D_803A6F40), 0x5B, 3, 0xC, 0xC, (D_8007D088->unk20->unk26 * 0xC) + 0x20, 0x10, 0x400, 0x400);
+    }
+  }
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_80020888.s")
+void func_80020888(void) { //@TODO roll it up up up
+    s32 var_v1;
+    struct_8008C668* var_v0;
+
+    var_v0 = D_8008C668;
+    var_v1 = 8;
+    do {
+        var_v1 -= 4;
+        var_v0->unk0 = 0;
+        var_v0[1].unk0 = 0;
+        var_v0[2].unk0 = 0;
+        var_v0[3].unk0 = 0;
+        var_v0 += 4;
+    } while (var_v1 != 0);
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_800208B8.s")
+void func_800208B8(MonsterBattleData* arg0) {
+    s32 i;
+    struct_8008C668* var_v0;
+    MonsterBaseData* temp_v1;
+
+    var_v0 = D_8008C668;
+    for (i = 7; i != 0 && var_v0->unk0 != 0; i--, var_v0++) {
+        
+    }
+    var_v0->unk0 = 0x2D;
+    var_v0->unk4 = (struct_8008C668_2* ) arg0;
+    var_v0->unk10 = 0.0f;
+    var_v0->unk8 = 0.0f;
+    temp_v1 = arg0->transformAnimation.unk64;
+    if (temp_v1->monsterType == 0) {
+        var_v0->unkC = temp_v1->hitboxWidth * arg0->transformAnimation.scale;
+    } else if (temp_v1->monsterType == 1) {
+        var_v0->unkC = arg0->unk68->unk94 - arg0->transformAnimation.posrot.pos.y;
+    } else {
+        var_v0->unkC = (f32) ((f64) arg0->transformAnimation.scale * 600.0);
+    }
+    var_v0->unk14 = 0x23;
+    var_v0->unk16 = 0x31;
+    var_v0->unk18 = 0x29;
+    var_v0->unk1A = 0xE;
+}
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_80020988.s") //@TODO There's a lot of weirdness here. It matches, but at what cost? 
 void func_80020988(void) {

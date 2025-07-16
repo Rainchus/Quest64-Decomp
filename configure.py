@@ -46,7 +46,7 @@ COMMON_INCLUDES = "-I. -Iinclude -Iinclude/2.0H/ -Iinclude/2.0H/PR -Isrc -Isrc/l
 IDO_DIR = f"{TOOLS_DIR}/ido_5.3/usr/lib/cc"
 CC_DIR = f"$ASM_PROC $ASM_PROC_FLAGS {IDO_DIR} --$AS $ASFLAGS"
 DEFINES = "-D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -DBUILD_VERSION=VERSION_H"
-WARNINGS = f"-fullwarn -verbose -Xcpluscomm -signed -nostdinc -non_shared -Wab,-r4300_mul {DEFINES} -woff 649,838"
+WARNINGS = f"-fullwarn -verbose -Xcpluscomm -signed -nostdinc -non_shared -Wab,-r4300_mul {DEFINES} -woff 649,838,709"
 CFLAGS = f"-G 0 {WARNINGS} {COMMON_INCLUDES}" #Might need {DEFINES} added back.
 DEPENDENCY_GEN = f"cpp -w {COMMON_INCLUDES} -nostdinc -MD -MF $out.d $in -o /dev/null"
 

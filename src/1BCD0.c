@@ -1,5 +1,7 @@
 #include "common.h"
 #include "1BCD0.h"
+#include "gbi.h"
+
 typedef struct {
     s32 unk0;
     s32 unk4;

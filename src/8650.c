@@ -1,8 +1,8 @@
 #include "common.h"
 #include "8650.h"
+#include "24E60.h"
 
-extern char D_D305E0[];
-
+extern u8 D_D305E0[];
 
 
 #pragma GLOBAL_ASM("asm/nonmatchings/8650/func_80007A50.s")
