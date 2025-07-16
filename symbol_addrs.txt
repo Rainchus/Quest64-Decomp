@@ -20,21 +20,29 @@ LoadNPCName               = 0x80008A00; //type:func
 ResetShadowCount          = 0x80011850; //type:func
 PositionActorShadow       = 0x80011860; //type:func
 
-InventoryInit             = 0x80021170; //type:func
-CheckIfInventoryFull      = 0x80021214; //type:func
-CheckForItemInInventory   = 0x80021240; //type:func
-AddItemToInventory        = 0x800212A0; //type:func
-NoEffectItem              = 0x8002224C; //type:func
-CheckIfHealingNeeded      = 0x80022260; //type:func
-CheckIfTeleportPossible   = 0x800222B4; //type:func
-CheckIfSpellItemUsable    = 0x80022300; //type:func
-UseHealingItem            = 0x8002234C; //type:func
-UseWings                  = 0x80022490; //type:func
-UseSpellItem              = 0x8002260C; //type:func
-DrawItemBox               = 0x8002263C; //type:func
 
-get_rand                       = 0x80022FD0; //rom:0x23BD0 type:func
-calc_arctan_in_radians    = 0x80023028; //rom:0x23C28 type:func
+Matrix_RotateScaleTranslate  = 0x80023360; //type:func
+Matrix_RotateZYX             = 0x80023570; //type:func
+Matrix_LookAtXZ              = 0x8002371C; //type:func
+Matrix_Scale                 = 0x80023DF4; //type:func
+Matrix_Multiply              = 0x80023E80; //type:func
+InventoryInit                = 0x80021170; //type:func
+CheckIfInventoryFull         = 0x80021214; //type:func
+CheckForItemInInventory      = 0x80021240; //type:func
+AddItemToInventory           = 0x800212A0; //type:func
+NoEffectItem                 = 0x8002224C; //type:func
+CheckIfHealingNeeded         = 0x80022260; //type:func
+CheckIfTeleportPossible      = 0x800222B4; //type:func
+CheckIfSpellItemUsable       = 0x80022300; //type:func
+UseHealingItem               = 0x8002234C; //type:func
+UseWings                     = 0x80022490; //type:func
+UseSpellItem                 = 0x8002260C; //type:func
+DrawItemBox                  = 0x8002263C; //type:func
+
+RNG                       = 0x80022FD0; //rom:0x23BD0 type:func
+fast_arctan_radians       = 0x80023028; //rom:0x23C28 type:func
+normalize2D               = 0x800231B0; //type:func
+approx_atan2f             = 0x80023210; //type:func
 rotateCoordinatesByAngle  = 0x800232F4; //rom:0x23EF4 type:func
 dmaLoadFromROM            = 0x80024260; //type:func
 count_digits              = 0x80024330; //type:func
@@ -68,6 +76,9 @@ __osEventStateTab = 0x80093F20;
 alSndpStop = 0x80039960;
 alEvtqPostEvent = 0x8003FE6C;
 alSndpSetVol = 0x80039A10;
+
+alSaveParam      = 0x800425E0; //type:func
+alSavePull       = 0x80042614; //type:func
 __osAiDeviceBusy = 0x800426A0;
 
 //os functions
@@ -119,6 +130,8 @@ cosf                      = 0x800361F0; //type:func
 
 __CSPPostNextSeqEvent     = 0x800370d0;
 
+
+alSeqpStop                = 0x800390C0;
 alSeqpGetState 			  = 0x800390f0;
 alSndpSetSound            = 0x800398B0; //type:func
 alSndpGetState 			  = 0x800398d0; //type:func
@@ -670,6 +683,15 @@ alCopy = 0x80048A40;
 alFilterNew = 0x80048AC0;
 alAuxBusParam = 0x800424D0;
 alAuxBusPull = 0x80042500;
+
+alEnvmixerParam = 0x80041984; //type:func
+alEnvmixerPull  = 0x80041F7C; //type:func
+alLoadParam     = 0x80040A20; //type:func
+alAdpcmPull     = 0x800410CC; //type:func
+alResampleParam = 0x80041570; //type:func
+alResamplePull  = 0x8004165C; //type:func
+alMainBusPull   = 0x80040900; //type:func
+alMainBusParam  = 0x800408D0; //type:func
 alAuxBusNew = 0x80040128;
 alResampleNew = 0x8004017C;
 alSaveNew = 0x80040090;

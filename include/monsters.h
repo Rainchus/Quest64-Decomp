@@ -66,7 +66,6 @@ typedef struct {
 
 typedef struct {
     TransformAnim transformAnimation;
-    MonsterBaseData *unk64;
     UnknownMonsterData2 *unk68;
     UnknownMonsterData2 unk6C;
 } MonsterBattleData;

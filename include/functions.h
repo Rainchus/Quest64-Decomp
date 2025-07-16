@@ -6,9 +6,9 @@
 
 float _nsqrtf(float);
 
-void func_80023570(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3);
-void func_8002371C(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-void func_80023DF4(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3);
+void Matrix_RotateZYX(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3);
+void Matrix_LookAtXZ(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
+void Matrix_Scale(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3);
 void func_80035510(float m[4][4], float n[4][4], float r[4][4]); //guMtxCatF
 void func_80023A08(MtxF*, f32, f32, f32); 
 void func_8001B448(u8, u8*, u8, u8, s32, s32);

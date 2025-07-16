@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern s32 D_800539A4;
+extern s32 D_800539B8;
 extern OSThread D_8008D090; //Almost certainly OSThread type. 
 extern ALHeap D_8008F240;
 extern OSMesgQueue D_8008F288;
@@ -96,6 +98,13 @@ void func_800258F8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/25290/func_80026488.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/25290/func_8002650C.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/25290/func_8002650C.s")
+void func_8002650C(void) {
+    if (D_800539A4 != 0xFF) {
+        func_8002568C(D_800539A4);
+    }
+    D_800539B8 = 0;
+    D_800539A4 = 0xFF;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/25290/func_80026554.s")

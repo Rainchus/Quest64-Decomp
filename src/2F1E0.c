@@ -64,7 +64,16 @@ void func_8002E628(s32 arg0, u8 arg1);
 void func_80030D70(void);
 u32 func_80030D80(void);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/2F1E0/func_8002E5E0.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/2F1E0/func_8002E5E0.s")
+void func_8002E5E0(s32 arg0) {
+    s32 var_s0;
+
+    var_s0 = 0;
+    do {
+        func_8002E628(var_s0, 0U);
+        var_s0 += 1;
+    } while (var_s0 != 4);
+}
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/2F1E0/func_8002E628.s") //!TODO something here is obviously wrong, since xpos is being set to ypos and width is being set to height
 void func_8002E628(s32 arg0, u8 arg1) {

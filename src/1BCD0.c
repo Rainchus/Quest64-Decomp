@@ -104,14 +104,14 @@ void func_8001B19C(teststruct* arg0) {
                 spB4.mf[3][0] = dust->unk18;
                 spB4.mf[3][1] = dust->unk1C;
                 spB4.mf[3][2] = dust->unk20;
-                func_80023DF4(&spB4, dust->unk28, dust->unk28, dust->unk28);
+                Matrix_Scale(&spB4, dust->unk28, dust->unk28, dust->unk28);
             } else {
-                func_8002371C(&spB4, dust->unk18, dust->unk1C, dust->unk20, D_80086DC0.unkC, D_80086DC0.unk10, D_80086DC0.unk14);
+                Matrix_LookAtXZ(&spB4, dust->unk18, dust->unk1C, dust->unk20, D_80086DC0.unkC, D_80086DC0.unk10, D_80086DC0.unk14);
                 if (dust->unk24 != 0.0f) {
-                    func_80023570(&sp74, 0.0f, 0.0f, dust->unk24);
+                    Matrix_RotateZYX(&sp74, 0.0f, 0.0f, dust->unk24);
                     func_80035510((f32 (*)[4]) &sp74, (f32 (*)[4]) &spB4, (f32 (*)[4]) &spB4);
                 }
-                func_80023DF4(&spB4, dust->unk28, dust->unk2C, 1.0f);
+                Matrix_Scale(&spB4, dust->unk28, dust->unk2C, 1.0f);
             }
             guMtxF2L((f32 (*)[4]) &spB4, &arg0->unkC0[D_8007B2F8]);
             gSPMatrix(gMasterGfxPos++, &D_2000000[D_8007B2F8+3].m[0][0], G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
