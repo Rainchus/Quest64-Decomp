@@ -34,7 +34,7 @@ typedef struct {
     s16 unk4E;
 }unk80166250;
 
-extern s32 D_80106220_ovl_intro;
+extern s32 gIntroFadeAlpha;
 extern s32 gIntroBGTextureXPosition;
 extern s32 D_80166224;
 extern s32 D_80166228;

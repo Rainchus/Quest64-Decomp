@@ -16,3 +16,6 @@ permuter_settings.toml
 undefined_syms_auto.txt
 .ninja_deps
 __pycache__/
+finddl.py
+models.txt
+other_dls.txt

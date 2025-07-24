@@ -759,3 +759,7 @@ gPal_Ci8_items_color           = 0x803AAC20; //rom:0xD3BE40
 gPal_Ci8_items_greyscale       = 0x803AAE20; //rom:0xD3C040
 
 gDL_Speech_bubble              = 0x803A8B90;
+
+gIntroFadeTimer   = 0x80106200; //rom:0xDC7820 type:s32 size:0x4
+gIntroFadeAlpha   = 0x80106220; //rom:0xDC7840 type:s32 size:0x4
+gIntroFadeState   = 0x80106224; //rom:0xDC7844 type:s32 size:0x4

@@ -489,6 +489,7 @@ void func_80020988(void) {
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/hud/func_80020B4C.s")
+//https://decomp.me/scratch/mr85d
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/hud/func_80020D18.s")
 s32 func_80020D18(u8* arg0) {
