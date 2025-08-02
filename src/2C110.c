@@ -9,6 +9,17 @@
 #define PAK_NEW 4
 #define PAK_FILE_EXIST 5
 
+extern void* gControllerPakMessages[4];
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+}struct_8006A014;
+
+extern struct_8006A014 D_8006A014[5];
+extern u8 D_8008FD23;
+
 typedef struct {
     s8 unk0;
     s8 unk1;
@@ -33,20 +44,43 @@ typedef struct SaveData {
     /* 0x60 */ s8 unk_63;
 } SaveData;
 
-typedef struct Unk4 {
+typedef struct {
     char unk_00[0x20];
     char unk_20[0x10];
     char unk_30[0x97];
     char unk_C7[1];
 } Unk4; //sizeof 0xC8
 
-extern struct_8008FD30 D_8008FD30;
 
+typedef struct {
+    char unk_00[0x60];
+    s32 unk_60;
+} struct_8008FD58;
+
+typedef struct {
+    s16 unk_00;
+    s8 unk_02[0x10];
+    char unk_12[1];
+    u8 unk_13;
+} struct_80092A38;
+
+
+void func_8002DD18(void);
+s32 func_80031574(s8);                              /* extern */
+s32 osMotorInit(OSMesgQueue* mq, OSPfs* pfs, int channel);
+s32 osPfsInitPak(OSMesgQueue *, OSPfs *, int);
+extern OSPfs gPFS[];
+extern OSMesgQueue gSIMessageQ;
+
+s32 func_800319E0(s8, s8, s32, s32, void*);                /* extern */
+extern s32 gControllerPakError;
+extern struct_8008FD30 D_8008FD30[16];
+extern SaveData gSaveFileDataBuffer;
+extern struct_80092A38 D_80092A38[4];
 extern u16 D_8008FD0C;
 extern u8 D_8005FAA0[]; //Display List
 extern u16 D_8008FD20;
 extern s8 D_8008FD22;
-extern s32 gControllerPakError;
 extern u8 D_8008FD28;
 extern s8 D_8008FD29;
 extern s8 gSelectedSaveSlot;
@@ -67,8 +101,15 @@ extern u8 D_800869D8[0x20];
 extern u8 D_80086AE8[0x10];
 extern u8 D_8007D19C[1];
 
-
-
+void func_8002D5D4(void);
+void func_8002D614(void);
+void func_8002DBE0(void);
+void func_8002B6F0(void);
+void func_8002B8C4(void);
+void func_8002BCA0(void);
+void func_8002C818(s32 arg0);
+void func_8002D748(void);
+void func_8002D8BC(void);
 void func_8002DF6C(void);
 void func_8002DFD0(void);
 s32 func_8003195C(s8, u8);
@@ -77,6 +118,7 @@ void func_80029B58(s32, s32, s32, s32, s32);
 //external
 s32 func_80031BB0(s32 arg0);
 s32 initPFSPaks(s32 arg0, s32 arg1);
+
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002B510.s")
 void func_8002B510(s32 arg0) {
@@ -91,12 +133,189 @@ void func_8002B510(s32 arg0) {
     D_8008FD2C = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002B57C.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002B57C.s")
+void func_8002B57C(void) {
+    func_8002DFD0();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002B6F0.s")
+    if (!(D_8008FD20 & 0x4000)) {
+        if (D_8008FD20 & 0x2000) {
+            func_8002B8C4();
+            D_8008FD20 |= 0x4000;
+            D_8008FD20 &= 0xDFFF;
+            D_8008FD2C = 0;
+        } else {
+            D_8008FD20 |= 0x2000;
+            D_8008FD23 = 0;
+        }
+    }
+
+    if (D_8008FD20 & 0x4000) {
+        switch (D_8008FD20 & 7) {
+        case 5:
+            func_8002BCA0();
+            break;
+        case 0:
+            func_8002C818(0);
+            break;
+        case 4:
+            func_8002D614();
+            break;
+        case 2:
+            func_8002D748();
+            break;
+        case 3:
+            func_8002D8BC();
+            break;
+        case 1:
+            func_8002DBE0();
+            break;
+        case 6:
+            func_8002D5D4();
+            break;
+        }
+    }
+
+    if (D_8008FD20 & 0x2000) {
+        func_8002B6F0();
+    }
+
+    if (D_8008FD20 & 0x8000) {
+        D_8008FD0C &= 0x7FFF;
+    }
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002B6F0.s")
+void func_8002B6F0(void) {
+    
+    struct_8006A014* temp_v0;
+    s32 pad;
+    s16 temp_s2;
+    s16 temp_s0;
+    s16 temp_s3;
+    s16 temp_s1;
+    
+    temp_v0 = &D_8006A014[D_8008FD23];
+    
+    temp_s2 = temp_v0->unk0;
+    temp_s0 = temp_v0->unk2;
+    temp_s3 = temp_v0->unk4;
+    temp_s1 = temp_v0->unk6;
+    
+    func_80029B58(0,  temp_s2,  temp_s0,  temp_s3,  temp_s1);
+    func_80029B58(0x37, temp_s2 + 3, temp_s0 + temp_s1,  temp_s3, 3);
+    func_80029B58(0x37, temp_s2 + temp_s3, temp_s0 + 6, 2, temp_s1 - 5);
+    func_80029B58(0x37, temp_s2 - 1, temp_s0 - 1, temp_s3 + 2, 1);
+    func_80029B58(0x37, temp_s2 - 1, temp_s0 + temp_s1, temp_s3 + 2, 1);
+    func_80029B58(0x37, temp_s2 - 1,  temp_s0, 1,  temp_s1);
+    func_80029B58(0x37, temp_s2 + temp_s3,  temp_s0, 1,  temp_s1);
+    func_80029B58(0x38, temp_s2 + 1, temp_s0 + 1, temp_s3 - 3, 1);
+    func_80029B58(0x38, temp_s2 + 1, temp_s0 + 2, 1, temp_s1 - 4);
+    func_80029B58(0x39, temp_s2 + 1, temp_s0 + temp_s1 - 2, temp_s3 - 2, 1);
+    func_80029B58(0x39, temp_s2 + temp_s3 - 2, temp_s0 + 1, 1, temp_s1 - 3);
+    func_80030EA0(temp_s2 + 6, temp_s0 + 6, (u8* ) gControllerPakMessages[D_8008FD23]);
+    func_8002DF6C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002B8C4.s")
 
+/* Matches on decomp.me but not here. Starting line 267 it does not match.
+void func_8002B8C4(void) {
+    s32 sp1C;
+    s32 sp18;
+    s32 temp_v0;
+    s32 var_a0_2;
+
+    sp1C = D_8008FD0C & 0xC;
+    if (D_8008FD20 & 0x1000) {
+        temp_v0 = osPfsInitPak(&gSIMessageQ, &gPFS[gCurrControllerNum], (s32) gCurrControllerNum);
+        if (temp_v0 == 2) {
+            temp_v0 = 0;
+        } else if (temp_v0 == 0xA) {
+            if (osMotorInit(&gSIMessageQ, &gPFS[gCurrControllerNum], (s32) gCurrControllerNum) == 0) {
+                temp_v0 = 1;
+            } else {
+                temp_v0 = 0xA;
+            }
+        }
+        sp18 = temp_v0;
+        D_8008FD20 &= ~0x1000;
+    }
+    var_a0_2 = sp18;
+    if (var_a0_2 == 0) {
+        var_a0_2 = func_80031574(gCurrControllerNum);
+    }
+    if (var_a0_2 != 0) {
+        gControllerPakError = var_a0_2;
+        if (-func_80031BB0(var_a0_2) == 1) {
+            if (sp1C == 4) {
+                D_8008FD22 = 0xD;
+                D_8008FD29 = 0xA;
+            } else {
+                D_8008FD22 = 8;
+                D_8008FD29 = 0xA;
+            }
+        } else {
+            D_8008FD22 = 0x11;
+            D_8008FD29 = 0xA;
+        }
+        
+        D_8008FD20 &= ~7;
+        D_8008FD20 |= 5;
+        return;
+    }
+    if (sp1C == 4) {
+        if (D_80092A38[gCurrControllerNum].unk_13 < 2) {
+            if (D_80092A38[gCurrControllerNum].unk_00 & 0x4000) {
+                D_8008FD22 = 0x15;
+            } else {
+                D_8008FD22 = 0x14;
+            }
+            D_8008FD29 = 0xA;
+            D_8008FD20 &= ~7;
+            D_8008FD20 |= 5;
+            return;
+        }
+        if (D_80092A38[gCurrControllerNum].unk_00 & 0x2000) {
+            if (D_80092A38[gCurrControllerNum].unk_00 & 0x4000) {
+                D_8008FD22 = 0x15;
+                gSelectedSaveSlot = 0;
+                D_8008FD20 &= ~0x20;
+            } else {
+                D_8008FD22 = 0x14;
+            }
+            D_8008FD29 = 0xA;
+            D_8008FD20 &= ~7;
+            D_8008FD20 |= 5;
+            return;
+        }
+    } else if ((D_8008FD2C != 0) && ((D_80092A38[gCurrControllerNum].unk_13 < 2) || (D_80092A38[gCurrControllerNum].unk_00 & 0x2000)) ) {
+        D_8008FD22 = 0x18;
+        D_8008FD29 = 0xA;
+        func_8002DD18();
+        D_8008FD20 &= ~7;
+        D_8008FD20 |= 5;
+        gSelectedSaveSlot = 0;
+        D_8008FD20 &= ~0x20;
+        return;
+    } else if (!(D_80092A38[gCurrControllerNum].unk_00 & 0x4000)) {
+        if (sp1C == 0) {
+            D_8008FD22 = 9;
+            D_8008FD29 = 0xA;
+        } else {
+            D_8008FD22 = 0xA;
+            D_8008FD29 = 0xA;
+        }
+        D_8008FD20 &= ~7;
+        D_8008FD20 |= 5;
+        return;
+    }
+    func_8002DD18();
+    D_8008FD20 &= ~7;
+    D_8008FD20 = D_8008FD20;
+    gSelectedSaveSlot = 0;
+    D_8008FD20 &= ~0x20;
+}
+*/
 #pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002BCA0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002C818.s")
@@ -117,7 +336,7 @@ void func_8002D614(void) {
     s32 temp_v1;
     
 
-    temp_v0 = func_8003195C(gCurrControllerNum, (&D_8008FD30)[gSelectedSaveSlot].unk1);
+    temp_v0 = func_8003195C(gCurrControllerNum, D_8008FD30[gSelectedSaveSlot].unk1);
     if (temp_v0 != 0) {
         gControllerPakError = temp_v0;
         switch (-func_80031BB0(temp_v0)) {
@@ -146,7 +365,7 @@ void func_8002D614(void) {
         D_8008FD20 &= ~0x2000;
         D_8008FD22 = 0x16;
         D_8008FD29 = 0xA;
-        (&D_8008FD30)[gSelectedSaveSlot].unk1 = -1;
+        D_8008FD30[gSelectedSaveSlot].unk1 = -1;
     }
    
 }
@@ -161,7 +380,7 @@ void func_8002DBE0(void) {
     s32 error_type;
 
     rmonPrintf("Repair Info %d %d\n", gSelectedSaveSlot, gControllerPakError);
-    error = initPFSPaks((s32) (&D_8008FD30)[gSelectedSaveSlot].unk0, gControllerPakError);
+    error = initPFSPaks((s32) D_8008FD30[gSelectedSaveSlot].unk0, gControllerPakError);
     if (error) {
         gControllerPakError = error;
         error_type = -func_80031BB0(error);
@@ -192,7 +411,62 @@ void func_8002DBE0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002DD18.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002DD18.s")
+void func_8002DD18(void) {
+    struct_8008FD30* temp_v0;
+    s32 var_a1;
+    s32 var_fp;
+    s32 i;
+
+    var_fp = 0;
+    
+    //17 not 16?
+    for (i = 0; i < 17; i++) {
+        D_8008FD30[i].unk0 = -1;
+        D_8008FD30[i].unk1 = -1;
+    }
+
+    var_a1 = 0;
+    for (i = 0; i < 16; i++) {
+        if ((D_80092A38[gCurrControllerNum].unk_02[i] != 0x7F) && (D_80092A38[gCurrControllerNum].unk_02[i] >= 0)) {
+            temp_v0 = &D_8008FD30[var_a1];
+            temp_v0->unk0 = i;
+            temp_v0->unk1 = D_80092A38[gCurrControllerNum].unk_02[i];
+            var_a1 += 1;
+        }        
+    }
+    
+    if (D_8008FD0C & 4) {
+        if ((D_80092A38[gCurrControllerNum].unk_13 >= 2) && !(D_80092A38[gCurrControllerNum].unk_00 & 0x2000)) {
+            D_8008FD30[var_a1].unk0 = -2;
+        }
+    }
+    gSelectedSaveSlot = 0;
+
+    for (i = 0; i < 16; i++) {
+        //if slot index is greater than or equal to 0
+        if (D_8008FD30[i].unk0 >= 0) {
+            var_a1 = func_800319E0(gCurrControllerNum, D_8008FD30[i].unk0, 0, 0x80, &gSaveFileDataBuffer);
+            D_8008FD58[i] = gSaveFileDataBuffer;
+            if (var_a1 != 0) {
+                gControllerPakError = var_fp;
+                var_fp = -func_80031BB0(var_fp);
+                if (var_fp == 1) {
+                    D_8008FD22 = 8;
+                    D_8008FD29 = 0xA;
+                } else {
+                    D_8008FD22 = 0x11;
+                    D_8008FD29 = 0xA;
+                }
+                
+                D_8008FD20 &= ~7;
+                D_8008FD20 |= 5;
+            }
+        }   
+    }
+}
+
+
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/2C110/func_8002DF6C.s")
 void func_8002DF6C(void) {
