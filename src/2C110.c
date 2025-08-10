@@ -5,13 +5,6 @@ typedef struct Unk {
     s8 unk_01;
 } Unk;
 
-typedef struct Unk3 {
-    s16 unk_00;
-    s8 unk_02[0x10];
-    char unk_12[1];
-    u8 unk_13;
-} Unk3;
-
 typedef struct Unk4 {
     u8 unk_00[UNK_SIZE_0];
     u8 unk_20[UNK_SIZE_1];
@@ -41,7 +34,6 @@ extern s8 D_8008FD2A;
 extern Unk D_8008FD30[16];
 extern SaveData D_8008FD58[16];
 extern SaveData D_80090460;
-extern Unk3 D_80092A38[4];
 extern s8 gCurrControllerNum;
 extern u8 D_8008FD28;
 extern s8 D_8008FD2B;

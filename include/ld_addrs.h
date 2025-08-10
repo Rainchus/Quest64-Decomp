@@ -3,6 +3,13 @@
 
 #include "common.h"
 
+extern Addr NpcDataGlobal_DATA_END;
+extern Addr NpcDataGlobal_DATA_SIZE;
+extern Addr NpcDataGlobal_DATA_START;
+extern Addr NpcDataGlobal_ROM_END;
+extern Addr NpcDataGlobal_ROM_START;
+extern Addr NpcDataGlobal_VRAM;
+extern Addr NpcDataGlobal_VRAM_END;
 extern Addr SE_ctl_DATA_END;
 extern Addr SE_ctl_DATA_SIZE;
 extern Addr SE_ctl_DATA_START;
@@ -17,6 +24,13 @@ extern Addr SE_tbl_ROM_END;
 extern Addr SE_tbl_ROM_START;
 extern Addr SE_tbl_VRAM;
 extern Addr SE_tbl_VRAM_END;
+extern Addr UnkModelData0_DATA_END;
+extern Addr UnkModelData0_DATA_SIZE;
+extern Addr UnkModelData0_DATA_START;
+extern Addr UnkModelData0_ROM_END;
+extern Addr UnkModelData0_ROM_START;
+extern Addr UnkModelData0_VRAM;
+extern Addr UnkModelData0_VRAM_END;
 extern Addr boot_DATA_END;
 extern Addr boot_DATA_SIZE;
 extern Addr boot_DATA_START;
@@ -165,6 +179,20 @@ extern Addr unkData5_ROM_END;
 extern Addr unkData5_ROM_START;
 extern Addr unkData5_VRAM;
 extern Addr unkData5_VRAM_END;
+extern Addr unkData6_DATA_END;
+extern Addr unkData6_DATA_SIZE;
+extern Addr unkData6_DATA_START;
+extern Addr unkData6_ROM_END;
+extern Addr unkData6_ROM_START;
+extern Addr unkData6_VRAM;
+extern Addr unkData6_VRAM_END;
+extern Addr unkData7_DATA_END;
+extern Addr unkData7_DATA_SIZE;
+extern Addr unkData7_DATA_START;
+extern Addr unkData7_ROM_END;
+extern Addr unkData7_ROM_START;
+extern Addr unkData7_VRAM;
+extern Addr unkData7_VRAM_END;
 extern Addr unkData_DATA_END;
 extern Addr unkData_DATA_SIZE;
 extern Addr unkData_DATA_START;

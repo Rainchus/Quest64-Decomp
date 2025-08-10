@@ -90,39 +90,46 @@ typedef struct SaveData {
   /* 0x60 */ s8 unk_63;
 } SaveData;
 
-typedef struct {
-           PosRot posrot;
-           Vec3f speed;
-           f32 scale;
-           f32 shadowScale;
-           Vec3f shadowRot;
-           f32 unk38;
-           f32 unk3C;
-           f32 unk40;
-           f32 unk44;
-           f32 unk48;
-           f32 unk4C;
-           s16 unk50;
-           s16 currentAnimID;
-           u16 currentAnimFrame;
-           u16 totalAnimFrames;
-           u16 animFramerate;
-           s16 unk5A;
-           u16 unk5C;
-           s16 unk5E;
-           u16 unk60;
-           u16 unk62;
-           PlayerMainData* playerMainData;
-           void* playerStatusPtr;
-           u8 status[7];
-}PlayerPosData;
+typedef struct Unk3 {
+  /* 0x00 */ s16 unk_00;
+  /* 0x02 */ s8 unk_02[0x10];
+  /* 0x12 */ char unk_12[1];
+  /* 0x13 */ u8 unk_13;
+} Unk3;
 
 typedef struct {
-  u16 map;
-  u16 submap;
-  f32 x;
-  f32 z;
-  f32 yrot;
+  /* 0x00 */ PosRot posrot;
+  /* 0x18 */ Vec3f speed;
+  /* 0x24 */ f32 scale;
+  /* 0x28 */ f32 shadowScale;
+  /* 0x2C */ Vec3f shadowRot;
+  /* 0x38 */ f32 unk38;
+  /* 0x3C */ f32 unk3C;
+  /* 0x40 */ f32 unk40;
+  /* 0x44 */ f32 unk44;
+  /* 0x48 */ f32 unk48;
+  /* 0x4C */ f32 unk4C;
+  /* 0x50 */ s16 unk50;
+  /* 0x52 */ s16 currentAnimID;
+  /* 0x54 */ u16 currentAnimFrame;
+  /* 0x56 */ u16 totalAnimFrames;
+  /* 0x58 */ u16 animFramerate;
+  /* 0x5A */ s16 unk5A;
+  /* 0x5C */ u16 unk5C;
+  /* 0x5E */ s16 unk5E;
+  /* 0x60 */ u16 unk60;
+  /* 0x62 */ u16 unk62;
+  /* 0x64 */ PlayerMainData* playerMainData;
+  /* 0x68 */ void* playerStatusPtr;
+  /* 0x6C */ u8 status[7];
+} PlayerPosData; //sizeof 0x74
+
+typedef struct {
+/* 0x00 */ u16 map;
+/* 0x02 */ u16 submap;
+/* 0x04 */ f32 x;
+/* 0x08 */ f32 z;
+/* 0x0C */ f32 yrot;
 }SaveSpawnLocation;
 
 typedef struct {

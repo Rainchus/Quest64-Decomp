@@ -288,7 +288,8 @@ gBattleState              = 0x8008C592; //type:u16 size:0x2
 D_8008C634                = 0x8008C634; //type:s32 size:0x4
 gInventory                = 0x8008CF78; //type:u8 size:0x96
 D_8008FD00                = 0x8008FD00; //type:s8 size:0x4
-
+gNumShadowsToDrawThisFrame = 0x800862D0;
+gActorShadows = 0x80085BD0;
 gCurrControllerNum        = 0x80092870; //type:s8 size:0x1
 gPadStickX                = 0x80092871; //type:s8 size:0x1
 gPadStickY                = 0x80092872; //type:s8 size:0x1
@@ -296,7 +297,7 @@ gPadButtonPressed         = 0x80092874; //type:u16 size:0x2
 gSIMessageQ               = 0x80092880;
 gPFS                      = 0x80092898;
 
-gPad                      = 0x80092AA8; //size:0x05
+gPad                      = 0x80092AA8; //size:0x18
 
 gPakMenuScroll            = 0x80092D0E; //type:u8 size:0x01
 

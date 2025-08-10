@@ -10,14 +10,17 @@ extern u8 gInventory[INVENTORY_SIZE];
 extern OSPfs gPFS[];
 extern s8 gCurrControllerNum;
 extern OSMesgQueue gSIMessageQ;
-
+extern Unk3 D_80092A38[4];
 extern OSMesgQueue D_80092880;
-extern OSContPad gPad;
+extern OSContPad gPad[4];
+extern OSContStatus D_80092A90[4];
+extern OSMesg D_80092AA0;
 extern s8 gPadStickX;
 extern s8 gPadStickY;
 extern u16 gPadButtonPressed;
 extern u16 D_80092876;
 extern u16 D_80092878;
+extern u8 D_80092A88;
 //unsorted symbols
 extern s32 gGameState;
 extern u16 gGameMode;

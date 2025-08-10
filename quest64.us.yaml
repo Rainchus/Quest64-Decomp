@@ -366,6 +366,30 @@ segments:
       - [0x77560, databin]
 
   - type: databin
+    start: 0x871900
+    name: UnkModelData0
+    subsegments:
+      - [0x871900, databin]
+
+  - type: databin
+    start: 0x873F20
+    name: unkData6
+    subsegments:
+      - [0x873F20, databin]
+
+  - type: databin
+    start: 0xA725D0
+    name: NpcDataGlobal
+    subsegments:
+      - [0xA725D0, databin]
+
+  - type: databin
+    start: 0xA7A190
+    name: unkData7
+    subsegments:
+      - [0xA7A190, databin]
+
+  - type: databin
     start: 0xD4B3C0
     name: unkData3
     subsegments:
