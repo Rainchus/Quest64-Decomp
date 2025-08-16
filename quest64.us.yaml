@@ -97,7 +97,7 @@ segments:
       - [0x23BD0, c, el_math]
       - [0x24E60, c]
       - [0x25290, c, 25290]
-      - [0x271F0, c, bgm]
+      - [0x271F0, c, bgm] #All functions matching
       - [0x27640, c, 27640]
       - [0x2C110, c, 2C110]
       - [0x2F1E0, c, 2F1E0]
@@ -144,12 +144,12 @@ segments:
       - [0x36FE0, c, invalicache]
       - [0x37060, c, invaldcache]
       - [0x37110, c, pidma]
-      - [0x37220, c, heapinit]
+      - [0x37220, c, audio/heapinit]
       - [0x37260, c, heapalloc]
       - [0x372C0, c, libultra/io/aisetfreq]
-      - [0x37420, c, sl]
+      - [0x37420, c, audio/sl]
       - [0x374E0, c, seqpsetvol]
-      - [0x37520, c, synthesizer]
+      - [0x37520, c, audio/synthesizer]
       - [0x37C00, c, libultra/io/aigetlen]
       - [0x37C10, c, libultra/io/aisetnextbuf]
       - [0x37CC0, c, n_alseqpgetvol]
@@ -220,7 +220,7 @@ segments:
       - [0x40720, c, libc/string]
       - [0x407C0, c, jammesg]
       - [0x40910, c, libultra/io/pigetcmdq]
-      - [0x40940, c, syndelete]
+      - [0x40940, c, audio/syndelete]
       - [0x40950, c, event]
       - [0x40C90, c, audio/drvrNew]
       - [0x41430, c, synallocfx]
@@ -333,7 +333,7 @@ segments:
       - [0x72790, .rodata, perspective]
       - [0x727A0, .rodata, lookatref]
       - [0x727B0, .rodata, cosf]
-      - [0x72800, .rodata, synthesizer]
+      - [0x72800, .rodata, audio/synthesizer]
       - [0x72810, .rodata, os/csplayer]
       - [0x72A50, .rodata, cseq]
       - [0x72A60, .rodata, sndplayer]
@@ -441,36 +441,38 @@ segments:
       - [0x871760, vtx]
       - [0x871810, gfx]
 
-  - type: databin
+  - type: code
+    exclusive_ram_id: map
     start: 0x871900
+    vram: 0x8020C0D0
     name: unkDataAgain
     subsegments:
-      - [0x871900, databin]
+      - [0x871900, data]
 
-  - type: data
-    start: 0x873F20
-    vram: 0x8020E6F0
-    name: MelrodeNPCData
-    subsegments:
-      - [0x873F20, data]
-      - [0x8D3220, gfx]
-      - [0x8D32A0, vtx]
-      - [0x8D32F0, gfx]
-      - [0x8D3380, vtx]
-      - [0x8D33E0, gfx]
-      - [0x8D3450, vtx]
-      - [0x8D34F0, gfx]
-      - [0x8D3570, vtx]
-      - [0x8D35C0, gfx]
-      - [0x8D3650, vtx]
-      - [0x8D36B0, gfx]
-      - [0x8D3720, vtx]
-      - [0x8D37C0, gfx]
-      - [0x8D3840, vtx]
-      - [0x8D3890, gfx]
-      - [0x8D3920, vtx]
-      - [0x8D39E0, gfx]
-      - [0x8D3A40, data, names]
+  #- type: data
+  #  start: 0x873F20
+  #  vram: 0x8020E6F0
+  #  name: MelrodeNPCData
+  #  subsegments:
+  #    - [0x873F20, data]
+  #    - [0x8D3220, gfx]
+  #    - [0x8D32A0, vtx]
+  #    - [0x8D32F0, gfx]
+  #    - [0x8D3380, vtx]
+  #    - [0x8D33E0, gfx]
+  #    - [0x8D3450, vtx]
+  #    - [0x8D34F0, gfx]
+  #    - [0x8D3570, vtx]
+  #    - [0x8D35C0, gfx]
+  #    - [0x8D3650, vtx]
+  #    - [0x8D36B0, gfx]
+  #    - [0x8D3720, vtx]
+  #    - [0x8D37C0, gfx]
+  #    - [0x8D3840, vtx]
+  #    - [0x8D3890, gfx]
+  #    - [0x8D3920, vtx]
+  #    - [0x8D39E0, gfx]
+  #    - [0x8D3A40, data, names]
 
   - type: databin
     start: 0x8D3B90

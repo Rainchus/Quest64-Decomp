@@ -1,6 +1,6 @@
 #include "common.h"
 #include <libaudio.h>
-#include "libultra/audio/synthInternals.h"
+#include "synthInternals.h"
 #include <os.h>
 #include "initfx.h"
 

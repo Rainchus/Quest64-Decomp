@@ -127,6 +127,8 @@ guLookAtReflect           = 0x800360d0;
 guTranslateF              = 0x80036150;
 guTranslate               = 0x80036198;
 cosf                      = 0x800361F0; //type:func
+alHeapInit                = 0x80036620; //type:func
+
 
 __CSPPostNextSeqEvent     = 0x800370d0;
 
@@ -421,6 +423,7 @@ gTexture_Ci4_Controller_Pak_menu_border_LL                   = 0x8006B5C0;
 gTexture_Ci4_Controller_Pak_menu_border_bottom_middle        = 0x8006B650;
 gTexture_Ci4_Controller_Pak_menu_border_LR                   = 0x8006B6E0;
 
+alGlobals                 = 0x80070990; 
 __osRunQueue              = 0x800709F8;
 __osActiveQueue           = 0x800709FC;
 __osRunningThread         = 0x80070A00;
@@ -578,6 +581,11 @@ strchr = 0x8003FB74;
 strlen = 0x8003FB4C;
 osPiStartDma = 0x80036510;
 osAiSetFrequency = 0x800366C0;
+
+alUnlink         = 0x80036820; //type:func
+alLink           = 0x80036850; //type:func
+alClose          = 0x80036874; //type:func
+alInit           = 0x800368AC; //type:func
 alSeqpSetVol     = 0x800368E0;
 osAiSetNextBuffer = 0x80037010;
 osContStartQuery = 0x8003C8E0;

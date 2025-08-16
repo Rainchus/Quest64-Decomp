@@ -40,6 +40,9 @@ SPECIAL_FILE_COMPILE_RULES = {
     "src/libultra/io/sptask.c": "O2_G0cc",
     "src/libultra/audio/sndpstop.c": "O2_G0cc",
     "src/audio/drvrNew.c": "O2_G0cc",
+    "src/audio/heapinit.c": "O2_G0cc",
+    "src/audio/sl.c": "O2_G0cc",
+    "src/audio/synthesizer": "O2_G0cc",
 }
 
 COMMON_INCLUDES = "-I. -Iinclude -Iinclude/2.0H/ -Iinclude/2.0H/PR -Isrc -Isrc/libultra"
