@@ -3,12 +3,11 @@
 #include "33D0.h"
 #include "1D160.h"
 #include "24E60.h"
+#include "191F0.h"
 
 #define ARRAY_COUNT(a) (sizeof(a) / sizeof(a[0]))
 
 //put this stuff in a header somewhere. Why doesn't it already exist? 
-typedef short int16_t;
-typedef int16_t		qs510_t;
 #define qs510(n)		((qs510_t)((n) * 0x0400))
 
 #define ITEM_USABLE 1

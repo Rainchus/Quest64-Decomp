@@ -2,6 +2,7 @@ func_8010004C_DA693C_ovl_title = 0x8010004C; // rom:0xDA693C type:func
 func_8010009C_DC16BC_ovl_intro = 0x8010009C; // rom:0xDC16BC type:func
 func_8010008C_E278CC_ovl_ending = 0x8010008C; // rom:0xE278CC type:func
 
+osRomBase                 = 0x80000308;
 
 nnScCreateScheduler       = 0x80000530;
 nnScStartScheduler        = 0x8000062C;
@@ -113,9 +114,12 @@ _nsqrtf                   = 0x80034f60;
 guPositionF               = 0x80034f70;
 
 guPosition                = 0x80035120;
+sins                      = 0x80035190; //type:func
 guMtxF2L                  = 0x80035200; //rom:0x35E00 type:func
 guMtxIdentF               = 0x80035300; //rom:0x35F00 type:func
 guMtxIdent                = 0x80035388; //rom:0x35F88 type:func
+guMtxL2F                  = 0x800353B8; //type:func
+guMtxCatF                 = 0x80035510; //type:func
 sinf                      = 0x80035680; //type:func
 guOrthoF                  = 0x80035840;
 guOrtho                   = 0x80035994;
@@ -551,6 +555,9 @@ gTexture_title_Quest64      = 0x80105750; //rom:0xDAC040
 gPal_title_background       = 0x80109090; //rom:0xDAF980
 gTexture_title_background   = 0x80109290; //rom:0xDAFB80
 
+gPal_Ci8_Title_Screen_BW    = 0x8010C650; //rom:0xDCDC70
+gPal_Ci8_Title_Screen_Color = 0x80110390; //rom:0xDD19B0
+gTexture_Title_Screen_BG    = 0x80110590; //rom:0xDD1BB0
 gPal_unk_title_mint_color   = 0x8011ACA0; //rom:0xDC1590
 gUnk_title_Zs   = 0x8011ACB8; //rom:0xDC15A8
 
@@ -712,6 +719,7 @@ __osPackRamWriteData = 0x80046D84;
 __osSiDeviceBusy = 0x80047180;
 __osCurrentHandle = 0x8006F440;
 osPiGetCmdQueue = 0x8003FD10;
+alSynDelete     = 0x8003FD40; //type:func
 
 __ull_rshift = 0x80039AD0;
 __ull_rem = 0x80039AFC;

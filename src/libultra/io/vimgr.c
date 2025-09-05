@@ -2,7 +2,7 @@
 
 #include <os_internal.h>
 #include <rcp.h>
-#include "viint.h"
+#include "PR/viint.h"
 #include "os/osint.h"
 
 OSDevMgr __osViDevMgr = {0};

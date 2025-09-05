@@ -8,6 +8,13 @@ typedef struct {
     char unk2[0xCE];
 }struct_800880A8;
 
+typedef struct {
+    s32 unk0;
+    s32 unk4;
+}struct_80087210;
+
+extern struct_80087210 D_80087210[];
+
 extern struct_800880A8 D_800880A8[4];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/191F0/func_800185F0.s")
@@ -26,9 +33,35 @@ void func_80018638(Mtx* arg0) {
     func_80018F60();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/191F0/func_80018684.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/191F0/func_80018684.s") @TODO I'm sure this can be written better. 
+void func_80018684(void) {
+    struct_80087210* ptr;
+    s32 count = 8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/191F0/func_800186B4.s")
+    ptr = D_80087210;
+    do {
+        ptr[0].unk0 = 0;
+        ptr[1].unk0 = 0;
+        ptr[2].unk0 = 0;
+        ptr[3].unk0 = 0;
+        ptr += 4;      // advance 4 structs (0x20 bytes)
+        count -= 4;
+    } while (count != 0);
+}
+
+//#pragma GLOBAL_ASM("asm/nonmatchings/191F0/func_800186B4.s")
+void func_800186B4(s32 arg0) {
+    s32 var_v0 = 7;
+    struct_80087210* var_v1 = D_80087210;
+
+    while (var_v0 != 0 && var_v1->unk0 != 0) {
+        var_v0--;
+        var_v1++;
+    }
+
+    var_v1->unk0 = 4;
+    var_v1->unk4 = arg0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/191F0/func_800186F8.s")
 

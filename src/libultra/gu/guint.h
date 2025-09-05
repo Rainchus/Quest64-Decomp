@@ -40,3 +40,4 @@ typedef	float	Matrix[4][4];
 #define	ABS(d)		((d) > 0) ? (d) : -(d)
 
 extern float	__libm_qnan_f;
+

@@ -29,6 +29,8 @@ extern s32 D_8007C990;
 extern u16 gBattleState;
 extern u16 D_8004CD74[];
 
+
+void func_800208B8(MonsterBattleData* arg0);
 #define IN_BOSS_BATTLE gBattleState & 0x100
 
 void func_8001FCF8(struct_80018278_arg1* arg0, u16 arg1, u16 arg2, s16 arg3);

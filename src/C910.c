@@ -3,10 +3,13 @@
 #include "1BCD0.h"
 
 typedef struct {
-    s32 unk0;
-    char unk4[0x10 - 0x4];
-    s32 unk10;
-    char unk14[0x1C - 0x14];
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+    f32 unkC;
+    f32 unk10;
+    s16 unk14;
+    u16 unk16;
 }struct_80084E60;
 
 typedef struct {
@@ -88,7 +91,7 @@ s32 func_8000DB38(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/C910/func_8000E224.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/C910/func_8000E2C0.s")
-//https://decomp.me/scratch/F8cdR
+//https://decomp.me/scratch/mF7ad
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/C910/func_8000E350.s")
 void func_8000E350(struct_8000E350* arg0) {

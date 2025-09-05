@@ -20,7 +20,7 @@ void alLink(ALLink *ln, ALLink *to)
 void alClose(ALGlobals *glob)
 {
     if (alGlobals) {
-        func_8003FD40(&glob->drvr); //alSynDelete
+        alSynDelete(&glob->drvr);
         alGlobals = 0;
     }
 }

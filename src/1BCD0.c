@@ -1,4 +1,5 @@
 #include "common.h"
+#include "gu/mtxutil.h"
 #include "1BCD0.h"
 #include "gbi.h"
 
@@ -39,7 +40,7 @@ typedef struct {
 
 typedef struct {
     char unk00[0xC0];
-    Mtx unkC0[];
+    Mtx unkC0[1]; //@TODO This is only 1 temporarily until the actual size is discovered. 
 } teststruct;
 
 extern Mtx D_2000000[];
@@ -111,7 +112,7 @@ void func_8001B19C(teststruct* arg0) {
                 Matrix_LookAtXZ(&spB4, dust->unk18, dust->unk1C, dust->unk20, D_80086DC0.unkC, D_80086DC0.unk10, D_80086DC0.unk14);
                 if (dust->unk24 != 0.0f) {
                     Matrix_RotateZYX(&sp74, 0.0f, 0.0f, dust->unk24);
-                    func_80035510((f32 (*)[4]) &sp74, (f32 (*)[4]) &spB4, (f32 (*)[4]) &spB4);
+                    guMtxCatF((f32 (*)[4]) &sp74, (f32 (*)[4]) &spB4, (f32 (*)[4]) &spB4);
                 }
                 Matrix_Scale(&spB4, dust->unk28, dust->unk2C, 1.0f);
             }

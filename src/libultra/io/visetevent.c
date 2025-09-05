@@ -1,7 +1,7 @@
 #include "PR/os_internal.h"
 #include "PR/ultraerror.h"
 #include "assert.h"
-#include "viint.h"
+#include "PR/viint.h"
 
 void osViSetEvent(OSMesgQueue* mq, OSMesg m, u32 retraceCount) {
     register u32 saveMask;
