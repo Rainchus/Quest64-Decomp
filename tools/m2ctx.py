@@ -16,6 +16,7 @@ CPP_FLAGS = [
     "-Iinclude",
     "-Iinclude/2.0H",
     "-Iinclude/2.0H/PR",
+    "-Iinclude/2.0H/PRinternal",
     "-D_LANGUAGE_C",
     "-D_FINALROM",
     "-DF3DEX_GBI",

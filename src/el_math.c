@@ -1,6 +1,8 @@
 #include "common.h"
 #include "el_math.h"
 
+#define PI 3.141592653589793
+
 u32 get_rand(u32 MAX) {
 	if (MAX != 0) {
 		return (((rand_seed = (rand_seed * 0x41C64E6D) + 0x3039) >> 0x10)) % MAX;
@@ -39,12 +41,26 @@ f32 calc_arctan_in_radians(f32 x) {
 void func_800231B0(f32* arg0, f32* arg1) {
     f32 temp_f2_2;
    
-    temp_f2_2 = 1.0f / _nsqrtf((*arg0 * *arg0) + (*arg1 * *arg1));
+    temp_f2_2 = 1.0f / sqrtf((*arg0 * *arg0) + (*arg1 * *arg1));
     *arg0 *= temp_f2_2;
     *arg1 *= temp_f2_2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/el_math/func_80023210.s")
+float func_80023210(f32 arg0, f32 arg1) {
+    float var_f2;
+    
+    if (arg1 == 0.0f) {
+        var_f2 = arg0 >= 0.0f ? (PI/2) : -(PI/2);
+    } else if (arg1 > 0.0f) {
+        var_f2 = calc_arctan_in_radians(arg0 / arg1);
+    } else if ((arg1 < 0.0f) && (arg0 <= 0.0f)) {
+        var_f2 = calc_arctan_in_radians(arg0 / arg1) - PI;
+    } else {
+        var_f2 = calc_arctan_in_radians(arg0 / arg1) + PI;
+
+    }
+    return var_f2;
+}
 
 void rotateCoordinatesByAngle(f32 angle, Coordinates2D* coordinates) {
     f32 sinAngle;
@@ -150,7 +166,7 @@ void func_8002371C(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5,
 
 	temp_f2 = arg4 - arg1;
 	temp_f16 = arg6 - arg3;
-	temp_f0 = _nsqrtf((temp_f2 * temp_f2) + (temp_f16 * temp_f16));
+	temp_f0 = sqrtf((temp_f2 * temp_f2) + (temp_f16 * temp_f16));
 	if (temp_f0 == 0.0f) {
 		var_f18 = 0.0f;
 		var_f20 = 1.0f;
@@ -160,7 +176,7 @@ void func_8002371C(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5,
 	}
 
 	temp_f16_2 = arg5 - arg2;
-	temp_f0_2 = _nsqrtf((temp_f0 * temp_f0) + (temp_f16_2 * temp_f16_2));
+	temp_f0_2 = sqrtf((temp_f0 * temp_f0) + (temp_f16_2 * temp_f16_2));
 
 	if (temp_f0_2 == 0.0f) {
 		var_f2 = 0.0f;

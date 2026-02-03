@@ -4,7 +4,7 @@
 #include "ultra64.h"
 #include "common_structs.h"
 
-float _nsqrtf(float);
+float sqrtf(float);
 
 void func_80023570(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3);
 void func_8002371C(MtxF *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);

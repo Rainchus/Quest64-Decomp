@@ -12,6 +12,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/reverb/func_80049178.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/reverb/func_800493D4.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/reverb/alFxParam.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/reverb/func_800493EC.s")

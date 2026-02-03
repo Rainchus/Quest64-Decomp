@@ -37,7 +37,7 @@ typedef struct {
 
 typedef struct {
     char unk00[0xC0];
-    Mtx unkC0[];
+    Mtx unkC0[1];
 } teststruct;
 
 extern Mtx D_2000000[];
@@ -109,7 +109,7 @@ void func_8001B19C(teststruct* arg0) {
                 func_8002371C(&spB4, dust->unk18, dust->unk1C, dust->unk20, D_80086DC0.unkC, D_80086DC0.unk10, D_80086DC0.unk14);
                 if (dust->unk24 != 0.0f) {
                     func_80023570(&sp74, 0.0f, 0.0f, dust->unk24);
-                    func_80035510((f32 (*)[4]) &sp74, (f32 (*)[4]) &spB4, (f32 (*)[4]) &spB4);
+                    guMtxCatF((f32 (*)[4]) &sp74, (f32 (*)[4]) &spB4, (f32 (*)[4]) &spB4);
                 }
                 func_80023DF4(&spB4, dust->unk28, dust->unk2C, 1.0f);
             }
